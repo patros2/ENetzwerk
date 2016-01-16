@@ -1,0 +1,10 @@
+EinleseFormat
+
+[K|SP|SQ|W] EigenID ZielID Wert
+
+
+Zeilenweise
+K=Kondensator
+SP=Spule
+SQ=Spannungsquelle
+W=Widerstand
