@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 project(ENetzwerk)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -I /usr/local/include -L /usr/local/lib ")  # enable C++11 standard
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")  # enable C++11 standard
 set (CMAKE_BUILD_TYPE Debug)
 
 

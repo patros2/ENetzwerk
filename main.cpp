@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
 #include <time.h>
-#include "/usr/local/include/yaml-cpp/yaml.h"
 
-#include "docopt.cpp-master/docopt.h"
+
+#include <yaml-cpp/yaml.h>
+#include <docopt/docopt.h>
 
 static const char USAGE[] =
 R"(ENetzwerk
