@@ -41,12 +41,16 @@ int main(int argc, const char** argv)
 
     std::cout << args["yaml"] << std::endl;
     if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
+      YAML::Node config = YAML::LoadFile("config.yaml");
+      if (config["name"]) {
+        std::cout << "Last logged in: " << config["name"] << "\n";
+      }
 
-
-    YAML::Emitter out;
-    out << "Hello, World!";
-   std::cout << "Here's the output YAML:\n" << out.c_str() << std::endl; // prints "Hello, World!"
+    
     }
+
+
+
 
 
     return 0;
