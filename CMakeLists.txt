@@ -15,4 +15,4 @@ add_executable(ENetzwerk main.cpp)
 add_dependencies(ENetzwerk docopt yaml-cpp)
 target_link_libraries (ENetzwerk LINK_PUBLIC docopt yaml-cpp)
 
-file(COPY ${PROJECT_BINARY_DIR}/ENetzwerk DESTINATION ../)
+#file(COPY ${PROJECT_BINARY_DIR}/ENetzwerk DESTINATION ../)
