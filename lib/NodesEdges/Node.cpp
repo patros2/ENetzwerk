@@ -15,7 +15,20 @@ std::string Node::generateId()
 }
 
 
-Node::Node(std::string id) : m_id(id) 
-{ 
+Node::Node(std::string id, double value, int type) : m_id(id), m_value(value), m_type(type)
+{
 	s_numInstances += 1;
 }
+
+//Ergaenzungen
+
+double Node::generateValue()
+{
+    return 0;
+}
+
+int Node::generateType()
+{
+    return 1;
+}
+

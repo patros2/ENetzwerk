@@ -1,11 +1,19 @@
 #include <stdio.h>
+#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Node.h"
+#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
+#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
 
-double a,b,c,d,wert=0;
 
-double berechnen(double a, double b, double c, double d){
+Node* a = new Node("a");
+Node* b = new Node("b");
+Node* c = new Node("c");
+Node* d = new Node("d");
+double wert = 0;
 
-    double masche [2][2] = {{a,b},{c,d}};
-    double knoten [2][2] = {{a,b},{c,d}};
+double berechnen(Node a, Node b, Node c, Node d){
+
+    Node masche [2][2] = {{a,b},{c,d}};
+    Node knoten [2][2] = {{a,b},{c,d}};
 
 
 
@@ -13,8 +21,8 @@ double berechnen(double a, double b, double c, double d){
         {
         for (int j=0;j<5;j++)
             {
-                printf("%d,%d,%f\n",i,j,wert);
-                wert = wert + masche [i][j];
+                printf("1 %d,%d,%f\n",i,j,wert);
+                //wert = wert + masche [i][j];
             }
         }
     return wert;
@@ -23,7 +31,7 @@ double berechnen(double a, double b, double c, double d){
 int main(void)
 {
 
-    printf("%f\n",berechnen(1,2,3,4));
+    //printf("%f\n",berechnen(1,2,3,4));
 
 
     return 0;
