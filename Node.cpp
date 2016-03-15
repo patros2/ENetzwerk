@@ -10,7 +10,7 @@ int Node::s_numInstances = 0;
 std::string Node::generateId()
 {
 	std::stringstream s;
-	s << "Node_" << std::setw(4) << std::setfill('0') << s_numInstances;
+	s << "Node_" << std::setw(1) << std::setfill('0') << s_numInstances;
 	return s.str();
 }
 

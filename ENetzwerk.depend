@@ -1,0 +1,63 @@
+# depslib dependency file v1.0
+1457994963 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+	<stdio.h>
+	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Node.h"
+	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
+	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
+
+1457996313 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1457988003 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1457988003 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1457988003 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+	"Graph.h"
+
+1457996143 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.cpp
+	"Node.h"
+	<sstream>
+	<iomanip>
+	<cctype>
+
+<<<<<<< HEAD
+1458040603 source:h:\enetzwerk-patrick\main.cpp
+	<stdio.h>
+	<iostream>
+	"H:\ENetzwerk-patrick\lib\NodesEdges\Node.h"
+	"H:\ENetzwerk-patrick\lib\NodesEdges\Edge.h"
+	"H:\ENetzwerk-patrick\lib\NodesEdges\Graph.h"
+
+1457996782 h:\enetzwerk-patrick\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1457996782 h:\enetzwerk-patrick\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1457996782 h:\enetzwerk-patrick\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1457996782 source:h:\enetzwerk-patrick\lib\nodesedges\graph.cpp
+	"Graph.h"
+
+1458036072 source:h:\enetzwerk-patrick\lib\nodesedges\node.cpp
+	"Node.h"
+	<sstream>
+	<iomanip>
+	<cctype>
+
+=======
+>>>>>>> patrick
