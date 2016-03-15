@@ -28,6 +28,7 @@
 	<iomanip>
 	<cctype>
 
+<<<<<<< HEAD
 1458040603 source:h:\enetzwerk-patrick\main.cpp
 	<stdio.h>
 	<iostream>
@@ -58,3 +59,5 @@
 	<iomanip>
 	<cctype>
 
+=======
+>>>>>>> patrick
