@@ -9,13 +9,18 @@ class Node
 {
 public:
 
-	Node() : m_id(generateId()) { }
+	Node() : m_id(generateId()), m_value(generateValue()), m_type(generateType()) { }
 
-	Node(std::string id);
+	Node(std::string id, double value, int type);
 
 	const std::string& getID() const { return m_id; }
 
 	std::list<Edge*>& getOutgoingEdges() { return m_outgoingEdges; }
+
+	//Ergaenzungen
+	const double getValue() const { return m_value; }
+
+	const int getType() const { return m_type; }
 
 
 private:
@@ -27,6 +32,16 @@ private:
 	static int s_numInstances;
 
 	std::list<Edge*> m_outgoingEdges;
+
+	//Ergaenzungen
+	static double generateValue();
+
+	double m_value;
+
+	static int generateType();
+
+	int m_type;
+
 
 };
 
