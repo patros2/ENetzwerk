@@ -2,9 +2,17 @@
 #include <string>
 #include <time.h>
 
+#include <typeinfo>
 
 #include <yaml-cpp/yaml.h>
 #include <docopt/docopt.h>
+
+#include "./lib/NodesEdges/Node.h"
+#include "./lib/NodesEdges/Graph.h"
+
+
+//using namespace std;
+
 
 static const char USAGE[] =
 R"(ENetzwerk
@@ -42,8 +50,30 @@ int main(int argc, const char** argv)
     std::cout << args["yaml"] << std::endl;
     if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
       YAML::Node config = YAML::LoadFile("config.yaml");
+
+
       if (config["name"]) {
-        std::cout << "Last logged in: " << config["name"] << "\n";
+        
+
+        //std::cout << "Last logged in: " << paramter << "\n";
+
+        std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
+        Node* node1  = new Node(config["name"].as<std::string>());
+        Node* node2 = new Node(config["name2"].as<std::string>());
+        Node* node3 = new Node(config["name3"].as<std::string>());
+
+        Graph g;
+        g.addNode(node1);
+        g.addNode(node2);
+        g.addNode(node3);
+       
+        g.addEdge(new Edge(*node1, *node2));
+        g.addEdge(new Edge(*node1, *node3)); 
+        g.addEdge(new Edge(*node3, *node2)); 
+       
+        std::cout << g.toString() << std::endl;
+     
+
       }
 
     

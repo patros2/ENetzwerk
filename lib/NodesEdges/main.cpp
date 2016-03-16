@@ -3,10 +3,17 @@
 #include "Node.h"
 #include "Graph.h"
 
+
+#include <typeinfo>
+
+
 int main()
 {
+        std::string Test = "Berlin";
+       
+        std::cout << typeid(Test).name() << std::endl;
 
-	Node* node_berlin = new Node("Berlin");
+	Node* node_berlin = new Node(Test);
 	Node* node_frankfurt = new Node("Frankfurt");
 	Node* node_hamburg = new Node("Hamburg");
 
