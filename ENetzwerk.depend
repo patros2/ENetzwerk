@@ -73,7 +73,7 @@
 	"Node.h"
 	"Edge.h"
 
-1458118736 d:\enetzwerk\lib\nodesedges\node.h
+1458134169 d:\enetzwerk\lib\nodesedges\node.h
 	<string>
 	<list>
 
@@ -81,9 +81,30 @@
 	<string>
 	"Node.h"
 
-1458118736 source:d:\enetzwerk\lib\nodesedges\node.cpp
+1458133711 source:d:\enetzwerk\lib\nodesedges\node.cpp
 	"Node.h"
 	<sstream>
 	<iomanip>
 	<cctype>
+
+1458133758 source:d:\enetzwerk\main.cpp
+	<stdio.h>
+	<iostream>
+	"D:\ENetzwerk\lib\NodesEdges\Node.h"
+	"D:\ENetzwerk\\lib\NodesEdges\Edge.h"
+	"D:\ENetzwerk\\lib\NodesEdges\Graph.h"
+
+1458118736 d:\enetzwerk\\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1458134169 d:\enetzwerk\\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1458118736 d:\enetzwerk\\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
 
