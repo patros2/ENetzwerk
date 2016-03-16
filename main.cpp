@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <iostream>
+#include ".\lib\NodesEdges\Edge.h"
+#include ".\lib\NodesEdges\Node.h"
+#include ".\lib\NodesEdges\Graph.h"
 
-//#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Node.h"
-//#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
-//#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
-//arbeitsverzeichnis
-#include "D:\ENetzwerk\lib\NodesEdges\Node.h"
-#include "D:\ENetzwerk\\lib\NodesEdges\Edge.h"
-#include "D:\ENetzwerk\\lib\NodesEdges\Graph.h"
 
 Node* a = new Node("Spannungsquelle", 1.9, 4);
 Node* b = new Node("Kondesator", 3.5, 2);
