@@ -22,6 +22,22 @@
     #include "./lib/NodesEdges/Graph.h"
 #endif
 
+static const char USAGE[] =
+R"(ENetzwerk
+    Usage:
+      ENetzwerk yaml [-f config.yaml]
+      ENetzwerk berechnen 
+      ENetzwerk (-h | --help)
+      ENetzwerk --version
+    Options:
+      -h --help     Show this screen.
+      --version     Show version.
+)";
+
+
+
+static const char VERSION[] = "ENetzwerk 0.2";
+
 
 
 Node* a = new Node("Spannungsquelle", 1.9, 1);
@@ -52,19 +68,56 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
             }
         }
 }
-int main(void)
+
+int main(int argc, const char** argv)
 {
+    std::map<std::string, docopt::value> args = docopt::docopt(USAGE, 
+                                                  { argv + 1, argv + argc },
+                                                  true,               // show help if requested
+                                                  VERSION);  // version string
 
-
-    berechnen(a,b,c,d);
+    if (args["berechnen"].isBool() && args["berechnen"].asBool() == true ){
+      berechnen(a,b,c,d);
 
     //printf("%f\n",berechnen(1,2,3,4));
 
-    printf("1\n");
-    std::cout << a->getID() << " vom Typ " << a->getType() << " hat den Wert " << a->getValue() << std::endl;
-    std::cout << b->getID() << " vom Typ " << b->getType() << " hat den Wert " << b->getValue() << std::endl;
-    std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << std::endl;
-    std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << std::endl;
+      printf("1\n");
+      std::cout << a->getID() << " vom Typ " << a->getType() << " hat den Wert " << a->getValue() << std::endl;
+      std::cout << b->getID() << " vom Typ " << b->getType() << " hat den Wert " << b->getValue() << std::endl;
+      std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << std::endl;
+      std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << std::endl;
+
+    }
+
+
+    //std::cout << args["yaml"] << std::endl;
+    if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
+      YAML::Node config = YAML::LoadFile("config.yaml");
+
+
+      if (config["name"]) {
+        
+
+        //std::cout << "Last logged in: " << paramter << "\n";
+
+        std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
+       // Node* node1  = new Node(config["name"].as<std::string>());
+       // Node* node2 = new Node(config["name2"].as<std::string>());
+        //Node* node3 = new Node(config["name3"].as<std::string>());
+
+        //Graph g;
+        //g.addNode(node1);
+        //g.addNode(node2);
+        //g.addNode(node3);
+       
+        //g.addEdge(new Edge(*node1, *node2));
+        //g.addEdge(new Edge(*node1, *node3)); 
+        //g.addEdge(new Edge(*node3, *node2)); 
+       
+        //std::cout << g.toString() << std::endl;
+     
+      }
+    }
 
     return 0;
 }
