@@ -28,7 +28,8 @@
 	<iomanip>
 	<cctype>
 
-<<<<<<< HEAD
+1457996143 D
+
 1458040603 source:h:\enetzwerk-patrick\main.cpp
 	<stdio.h>
 	<iostream>
@@ -59,5 +60,81 @@
 	<iomanip>
 	<cctype>
 
-=======
->>>>>>> patrick
+1458036072 
+
+1458036072 rick
+
+1458118736 source:d:\enetzwerk\lib\nodesedges\graph.cpp
+	"Graph.h"
+
+1458118736 d:\enetzwerk\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1458134169 d:\enetzwerk\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1458118736 d:\enetzwerk\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1458133711 source:d:\enetzwerk\lib\nodesedges\node.cpp
+	"Node.h"
+	<sstream>
+	<iomanip>
+	<cctype>
+
+1458133758 source:d:\enetzwerk\main.cpp
+	<stdio.h>
+	<iostream>
+	"D:\ENetzwerk\lib\NodesEdges\Node.h"
+	"D:\ENetzwerk\\lib\NodesEdges\Edge.h"
+	"D:\ENetzwerk\\lib\NodesEdges\Graph.h"
+
+1458118736 d:\enetzwerk\\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1458134169 d:\enetzwerk\\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1458118736 d:\enetzwerk\\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1458138572 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+	"Graph.h"
+
+1458138572 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1458138922 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.h
+	<string>
+	<list>
+
+1458138572 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\edge.h
+	<string>
+	"Node.h"
+
+1458138922 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.cpp
+	"Node.h"
+	<sstream>
+	<iomanip>
+	<cctype>
+
+1458142545 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
+	<stdio.h>
+	<iostream>
+	".\lib\NodesEdges\Edge.h"
+	".\lib\NodesEdges\Node.h"
+	".\lib\NodesEdges\Graph.h"
+

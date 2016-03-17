@@ -22,6 +22,8 @@ public:
 
 	const int getType() const { return m_type; }
 
+	const std::string getName();
+
 
 private:
 
@@ -34,13 +36,15 @@ private:
 	std::list<Edge*> m_outgoingEdges;
 
 	//Ergaenzungen
-	static double generateValue();
+	const double generateValue();
 
 	double m_value;
 
-	static int generateType();
+	const int generateType();
 
 	int m_type;
+
+	std::string m_name;
 
 
 };
