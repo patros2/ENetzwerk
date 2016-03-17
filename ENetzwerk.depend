@@ -5,7 +5,7 @@
 	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
 	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
 
-1457996313 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
+1458248905 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
 	<string>
 	<list>
 
@@ -22,7 +22,7 @@
 1457988003 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
 
-1457996143 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.cpp
+1458248905 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.cpp
 	"Node.h"
 	<sstream>
 	<iomanip>
