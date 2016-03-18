@@ -1,4 +1,5 @@
-Programm zum berechnen von einfachen Schaltung
+Programm zum berechnen von einfachen Schaltung.
+Simple appliance to calucate electical network with linare elements.
 
 ## Build
 ```
@@ -6,6 +7,13 @@ Programm zum berechnen von einfachen Schaltung
    cmake ..
    cmake --build .
 ```
+
+Note for build on Windows. You'll need cmake and codeblocks.
+
+It's essential to place the mingwin compiler `;C;/MinGW/bin;` in the `PATH` in Windows System envionment to ensure a stable build.
+
+## ToDo
+ - Autolinking libraries in Windows to executable
 
 
 ## Dependency 

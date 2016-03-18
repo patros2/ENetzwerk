@@ -17,7 +17,8 @@ add_subdirectory(lib/NodesEdges)
 
 
 add_executable(ENetzwerk main.cpp)
-add_dependencies(ENetzwerk docopt yaml-cpp parse)
+add_dependencies(ENetzwerk docopt yaml-cpp)
+include_directories(lib/yaml-cpp-master/include)
 target_link_libraries (ENetzwerk LINK_PUBLIC docopt yaml-cpp NodesEdges)
 #link_directories($CMAKE_SOURCE_DIR/lib/NodesEdges)
 

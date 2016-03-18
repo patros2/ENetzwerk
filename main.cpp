@@ -5,22 +5,12 @@
 #include <typeinfo>
 
 
-#include <yaml-cpp/yaml.h>
-#include <docopt/docopt.h>
+#include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
+#include "./lib/docopt.cpp-master/docopt.h" 
+#include "./lib/NodesEdges/Node.h" 
+#include "./lib/NodesEdges/Graph.h"
 
 
-#ifdef _WIN32
-    //#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Node.h"
-    //#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
-    //#include "C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
-    //arbeitsverzeichnis
-    #include "D:\ENetzwerk\lib\NodesEdges\Node.h"
-    #include "D:\ENetzwerk\\lib\NodesEdges\Edge.h"
-    #include "D:\ENetzwerk\\lib\NodesEdges\Graph.h"
-#else
-    #include "./lib/NodesEdges/Node.h"
-    #include "./lib/NodesEdges/Graph.h"
-#endif
 
 static const char USAGE[] =
 R"(ENetzwerk
@@ -100,15 +90,15 @@ int main(int argc, const char** argv)
 
         //std::cout << "Last logged in: " << paramter << "\n";
 
-        std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
-       // Node* node1  = new Node(config["name"].as<std::string>());
+       // std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
+       // Node* node1  = new Node(config["name"].as<std::string>(), , );
        // Node* node2 = new Node(config["name2"].as<std::string>());
         //Node* node3 = new Node(config["name3"].as<std::string>());
 
         //Graph g;
-        //g.addNode(node1);
-        //g.addNode(node2);
-        //g.addNode(node3);
+       // g.addNode(node1);
+       // g.addNode(node2);
+       // g.addNode(node3);
        
         //g.addEdge(new Edge(*node1, *node2));
         //g.addEdge(new Edge(*node1, *node3)); 
