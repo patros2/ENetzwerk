@@ -1,9 +1,11 @@
 # depslib dependency file v1.0
-1457994963 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+1458260276 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
 	<stdio.h>
-	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Node.h"
-	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Edge.h"
-	"C:\Users\Ghostrider\Documents\GitHub\ENetzwerk\lib\NodesEdges\Graph.h"
+	<iostream>
+	".\lib\NodesEdges\Edge.h"
+	".\lib\NodesEdges\Node.h"
+	".\lib\NodesEdges\Graph.h"
+	".\lib\berechnungen\widerstand.h"
 
 1458248905 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
 	<string>
@@ -137,4 +139,27 @@
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
+
+1458260316 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
+	<stdio.h>
+	<iostream>
+	"widerstand.h"
+
+1458260287 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.h
+	"../NodesEdges/Graph.h"
+
+1457988003 c:\users\ghostrider\documents\github\enetzwerk\/..\enetzwerk\lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1457988003 lib\nodesedges\graph.h
+	<list>
+	<string>
+	"Node.h"
+	"Edge.h"
+
+1457988003 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+	"Graph.h"
 

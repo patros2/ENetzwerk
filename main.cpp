@@ -4,12 +4,9 @@
 #include ".\lib\NodesEdges\Edge.h"
 #include ".\lib\NodesEdges\Node.h"
 #include ".\lib\NodesEdges\Graph.h"
+#include ".\lib\berechnungen\widerstand.h"
 
 
-Node* a = new Node("Spannungsquelle", 1.9, 4);
-Node* b = new Node("Kondesator", 3.5, 2);
-Node* c = new Node("Spule", 1.5, 3);
-Node* d = new Node("Widerstand", 2.0, 1);
 
 double wert = 0;
 double test = 0;
@@ -39,6 +36,10 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
 int main(void)
 {
 
+    Node* a = new Node("Spannungsquelle", 1.9, 4);
+    Node* b = new Node("Kondesator", 3.5, 2);
+    Node* c = new Node("Spule", 1.5, 3);
+    Node* d = new Node("Widerstand", 2.0, 1);
 
     berechnen(a,b,c,d);
     //printf("%f\n",berechnen(1,2,3,4));

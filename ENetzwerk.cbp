@@ -40,6 +40,8 @@
 		<Unit filename="lib/NodesEdges/Graph.h" />
 		<Unit filename="lib/NodesEdges/Node.cpp" />
 		<Unit filename="lib/NodesEdges/Node.h" />
+		<Unit filename="lib/berechnungen/widerstand.cpp" />
+		<Unit filename="lib/berechnungen/widerstand.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
