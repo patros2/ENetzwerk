@@ -36,6 +36,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="CMakeLists.txt" />
+		<Unit filename="lib/NodesEdges/Edge.h" />
 		<Unit filename="lib/NodesEdges/Graph.cpp" />
 		<Unit filename="lib/NodesEdges/Graph.h" />
 		<Unit filename="lib/NodesEdges/Node.cpp" />

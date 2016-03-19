@@ -14,21 +14,26 @@ class Graph
 public:
 
 	void addNode(Node* pNode);
-	
+
 	void addEdge(Edge* pEdge);
-	
+
 	void deleteNode(Node* pNode);
 
 	void deleteEdge(Edge* pEdge);
 
 	std::string toString();
 
+    std::string toString2();
+
 	virtual ~Graph();
 
+    //std::list<Node*> getNode();
+    Node* getNode();
 
+std::list<Node*> m_nodes;
 private:
 
-	std::list<Node*> m_nodes;
+
 	std::list<Edge*> m_edges;
 
 };

@@ -1,5 +1,6 @@
 #include "Graph.h"
-
+#include <typeinfo>
+#include <stdio.h>
 
 //-------------------------------------------------------------------------------------------------
 
@@ -98,3 +99,29 @@ std::string Graph::toString()
 
 
 //-------------------------------------------------------------------------------------------------
+std::string Graph::toString2()
+{
+	std::string result;
+
+	for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
+	{
+		result += (*it)->getID() + "\n";
+	}
+
+	return result;
+}
+
+//-------------------------------------------------------------------------------------------------
+//Prototyp, nicht getestet
+Node* Graph::getNode()
+{
+    Node* result[255];
+    int i = 0;
+    for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
+	{
+	    i =+1;
+		result[i] = (*it);
+	}
+    printf("%s\n",typeid(result).name());
+    return *result;
+}

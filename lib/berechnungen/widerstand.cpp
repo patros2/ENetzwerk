@@ -10,12 +10,40 @@ double ms_wert = 0.0;
 
 double rs(Graph* netz)
 {
+/*
+    netz->nodes();
+
+	for (std::list<Node*>::iterator it = netz->m_nodes.begin(); it != netz->m_nodes.end(); it++)
+	{
+		rs_wert += (*it)->getValue();
+		std::cout << rs_wert << std::endl;
+	}
+
+*/
+    double eingabe[255];
+    int i;
+    for (i=0;i<10;i++)
+        {
+            //summe der Widerstaende
+            rs_wert =+ eingabe[i];
+
+        }
 
 return rs_wert;
 }
 
 double ps(Graph* netz)
 {
+
+ double eingabe[255];
+    int i;
+    for (i=0;i<10;i++)
+        {
+            //summe der Kehrwerte bzw. der reziproken Widerstaende
+            ps_wert =+ (1/eingabe[i]);
+
+        }
+
 
 return ps_wert;
 }
@@ -26,12 +54,14 @@ double ms(Graph* netz)
 return ms_wert;
 }
 
-/*
-double wert = 0;
-double test = 0;
-int z = 0;
-std::string name;
+
+
 double berechnen(Node* a, Node* b, Node* c, Node* d){
+
+    double wert = 0;
+    double test = 0;
+    int z = 0;
+    std::string name;
 
     Node* masche [2][2] = {{a,b},{c,d}};
     Node* knoten [2][2] = {{a,b},{c,d}};
@@ -44,12 +74,13 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
                 z=z+1;
                 test = masche[i][j]->getValue();
                 name = masche[i][j]->getID();
-                printf("Lauf: %d, %d, %d, %f \n",z,i,j,test);
-                std::cout << name << std::endl;
+                std::cout << z << " " << i << " " << j << " " << test << " " << name << std::endl;
+                //printf("Lauf: %d, %d, %d, %f \n",z,i,j,test);
+                //std::cout << name << std::endl;
 
             }
         }
     return wert;
 
 }
-*/
+
