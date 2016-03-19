@@ -27,6 +27,10 @@ int main(void)
 
     berechnen(a,b,c,d);
 
+    double as = netz.getNode()->getValue();
+
+    std::cout << "das ist : " << as << std::endl;
+
     std::cout << std::endl << "1" << std::endl << std::endl;
 
     std::cout << a->getID() << " vom Typ " << a->getType() << " hat den Wert " << a->getValue() << " und ist ein/e " << a->getName() << std::endl;

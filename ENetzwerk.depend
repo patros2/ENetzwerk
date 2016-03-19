@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1458341499 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+1458382452 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
 	<stdio.h>
 	<iostream>
 	".\lib\NodesEdges\Edge.h"
@@ -142,7 +142,7 @@
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
 
-1458339412 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
+1458384425 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
 	<stdio.h>
 	<iostream>
 	"widerstand.h"

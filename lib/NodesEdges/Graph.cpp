@@ -117,11 +117,13 @@ Node* Graph::getNode()
 {
     Node* result[255];
     int i = 0;
+//    std::cout << std::endl << "Welcome to GetNode: " << std::endl;
     for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
 	{
 	    i =+1;
 		result[i] = (*it);
+		printf("%f\n",result[i]->getValue());
 	}
-    printf("%s\n",typeid(result).name());
+    printf("%s\n",typeid(result[7]).name() );
     return *result;
 }
