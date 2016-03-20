@@ -30,12 +30,14 @@ public:
     //std::list<Node*> getNode();
     Node* getNode();
 
-std::list<Node*> m_nodes;
+    const std::list<Node*> getnodes() const { return m_nodes; }
+
+
 private:
 
 
 	std::list<Edge*> m_edges;
-
+    std::list<Node*> m_nodes;
 };
 
 

@@ -14,22 +14,36 @@ int main(void)
     Node* c = new Node("Spule", 1.5, 3);
     Node* d = new Node("Widerstand", 2.1, 1);
 
+    Node* e = new Node("Spannungsquelle", 1.9, 4);
+    Node* f = new Node("Kondesator", 3.5, 2);
+    Node* g = new Node("Spule", 1.5, 3);
+    Node* h = new Node("Widerstand", 2.1, 1);
+
     Graph netz;
     netz.addNode(a);
     netz.addNode(b);
     netz.addNode(c);
     netz.addNode(d);
 
+    Graph testn;
+    testn.addNode(e);
+    testn.addNode(f);
+    testn.addNode(g);
+    testn.addNode(h);
 
     std::cout << "Das ist Netz2: \n" << netz.getNode() << std::endl;
 
     std::cout << "Das ist Netz: \n" << netz.toString2() << std::endl;
 
-    berechnen(a,b,c,d);
+    //berechnen(a,b,c,d);
+    std::cout << "Ende von berechnen, start von rs" << std::endl;
+    rs(testn);
 
-    double as = netz.getNode()->getValue();
+    //double as = netz.getNode()->getValue();
+    //std::string ad = netz.getNode()->getName();
 
-    std::cout << "das ist : " << as << std::endl;
+    //std::cout << "das ist : " << as << std::endl;
+    //std::cout << "das ist : " << ad << std::endl;
 
     std::cout << std::endl << "1" << std::endl << std::endl;
 

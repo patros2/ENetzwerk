@@ -6,14 +6,15 @@
 
 Graph::~Graph()
 {
-
+    //rausgenommen, da sonst bei testnetz graph, nen fehler passiert
+    /*
 	for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
 	{
 		//Node* currentNode = *it;
 		//delete currentNode;
 		delete *it;
 	}
-
+*/
 	for (std::list<Edge*>::iterator it = m_edges.begin(); it != m_edges.end(); it++)
 	{
 		delete *it;
@@ -117,6 +118,7 @@ Node* Graph::getNode()
 {
     Node* result[255];
     int i = 0;
+    printf("\nWelcome to GetNode: \n");
 //    std::cout << std::endl << "Welcome to GetNode: " << std::endl;
     for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
 	{

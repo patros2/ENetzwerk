@@ -8,18 +8,19 @@ double rs_wert = 0.0;
 double ps_wert = 0.0;
 double ms_wert = 0.0;
 
-double rs(Graph* netz)
+double rs(Graph netz)
 {
-/*
-    netz->nodes();
 
-	for (std::list<Node*>::iterator it = netz->m_nodes.begin(); it != netz->m_nodes.end(); it++)
+    std::list<Node*> speicher = netz.getnodes();
+    int i = 0;
+	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
 	{
+	    i = i + 1;
 		rs_wert += (*it)->getValue();
-		std::cout << rs_wert << std::endl;
+		std::cout << i << ".Wert: " << rs_wert << std::endl;
 	}
 
-*/
+/*
     double eingabe[255];
     int i;
     for (i=0;i<10;i++)
@@ -28,11 +29,11 @@ double rs(Graph* netz)
             rs_wert =+ eingabe[i];
 
         }
-
+*/
 return rs_wert;
 }
 
-double ps(Graph* netz)
+double ps(Node* result[])
 {
 
  double eingabe[255];

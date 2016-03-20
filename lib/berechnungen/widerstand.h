@@ -5,9 +5,9 @@
 
 
 
-double rs(Graph* netz);
+double rs(Graph netz);
 
-double ps(Graph* netz);
+double ps(Node* result[]);
 
 double ms(Graph* netz);
 
