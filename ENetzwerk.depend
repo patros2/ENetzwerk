@@ -112,16 +112,18 @@
 	"Node.h"
 	"Edge.h"
 
-1458138572 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+1458490094 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
+	<typeinfo>
+	<stdio.h>
 
-1458138572 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.h
+1458490094 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.h
 	<list>
 	<string>
 	"Node.h"
 	"Edge.h"
 
-1458138922 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.h
+1458490044 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.h
 	<string>
 	<list>
 
@@ -129,18 +131,19 @@
 	<string>
 	"Node.h"
 
-1458138922 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.cpp
+1458490044 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\node.cpp
 	"Node.h"
 	<sstream>
 	<iomanip>
 	<cctype>
 
-1458142545 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
+1458490094 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
 	<stdio.h>
 	<iostream>
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
+	".\lib\berechnungen\widerstand.h"
 
 1458470051 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
 	<stdio.h>
@@ -164,4 +167,12 @@
 
 1457988003 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
+
+1458490094 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
+	<stdio.h>
+	<iostream>
+	"widerstand.h"
+
+1458490094 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\widerstand.h
+	"../NodesEdges/Graph.h"
 
