@@ -8,7 +8,7 @@ double rs_wert = 0.0;
 double ps_wert = 0.0;
 double ms_wert = 0.0;
 
-double rs(Graph netz)
+double w_rs(Graph netz)
 {
 
     std::list<Node*> speicher = netz.getnodes();
@@ -17,7 +17,7 @@ double rs(Graph netz)
 	{
 	    i = i + 1;
 		rs_wert += (*it)->getValue();
-		std::cout << i << ".Wert: " << rs_wert << std::endl;
+		//std::cout << i << ".Wert: " << rs_wert << std::endl;
 	}
 
 /*
@@ -33,23 +33,26 @@ double rs(Graph netz)
 return rs_wert;
 }
 
-double ps(Node* result[])
+double w_ps(Graph netz)
 {
 
- double eingabe[255];
-    int i;
-    for (i=0;i<10;i++)
-        {
-            //summe der Kehrwerte bzw. der reziproken Widerstaende
-            ps_wert =+ (1/eingabe[i]);
+std::list<Node*> speicher = netz.getnodes();
+    int i = 0;
+    double temp;
+	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
+	{
+	    i = i + 1;
+		temp += 1/(*it)->getValue();
 
-        }
+		std::cout << i << ".Wert: " << temp << std::endl;
+	}
+    ps_wert = 1/temp;
 
 
 return ps_wert;
 }
 
-double ms(Graph* netz)
+double w_ms(Graph* netz)
 {
 
 return ms_wert;

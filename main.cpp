@@ -17,7 +17,7 @@ int main(void)
     Node* e = new Node("Spannungsquelle", 1.9, 4);
     Node* f = new Node("Kondesator", 3.5, 2);
     Node* g = new Node("Spule", 1.5, 3);
-    Node* h = new Node("Widerstand", 2.1, 1);
+    Node* h = new Node("Widerstand", 2.3, 1);
 
     Graph netz;
     netz.addNode(a);
@@ -31,13 +31,21 @@ int main(void)
     testn.addNode(g);
     testn.addNode(h);
 
-    std::cout << "Das ist Netz2: \n" << netz.getNode() << std::endl;
+    std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
+/*
+    Node* container[11] = { 0 };
+    container[11] = netz.getNode();
 
-    std::cout << "Das ist Netz: \n" << netz.toString2() << std::endl;
+    std::cout << "Das ist der 3. Wert aus Netz: "<< container[2]->getValue() << std::endl;
+    std::cout << "Das ist der 1. Wert aus Netz: "<< container[0]->getValue() << std::endl;
+    std::cout << "Das ist der 4. Wert aus Netz: "<< container[3]->getValue() << std::endl;
+*/
+    std::cout << std::endl << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
 
     //berechnen(a,b,c,d);
     std::cout << "Ende von berechnen, start von rs" << std::endl;
-    rs(testn);
+    std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << std::endl;
+    std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn) << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();

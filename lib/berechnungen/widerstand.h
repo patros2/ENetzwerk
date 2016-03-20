@@ -5,11 +5,11 @@
 
 
 
-double rs(Graph netz);
+double w_rs(Graph netz);
 
-double ps(Node* result[]);
+double w_ps(Graph netz);
 
-double ms(Graph* netz);
+double w_ms(Graph* netz);
 
 double berechnen(Node* a, Node* b, Node* c, Node* d);
 
