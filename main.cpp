@@ -15,7 +15,7 @@
 static const char USAGE[] =
 R"(ENetzwerk
     Usage:
-      ENetzwerk yaml [-f config.yaml]
+      ENetzwerk yaml 
       ENetzwerk berechnen 
       ENetzwerk (-h | --help)
       ENetzwerk --version
@@ -29,7 +29,6 @@ R"(ENetzwerk
 static const char VERSION[] = "ENetzwerk 0.2";
 
 
-
 Node* a = new Node("Spannungsquelle", 1.9, 1);
 Node* b = new Node("Kondesator", 3.5, 0);
 Node* c = new Node("Spule", 1.5, 2);
@@ -41,7 +40,7 @@ std::string name;
 double berechnen(Node* a, Node* b, Node* c, Node* d){
 
     Node* masche [2][2] = {{a,b},{c,d}};
-    Node* knoten [2][2] = {{a,b},{c,d}};
+   Node* knoten [2][2] = {{a,b},{c,d}};
 
 
     for (int i=0;i<2;i++)
@@ -84,11 +83,24 @@ int main(int argc, const char** argv)
     if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
       YAML::Node config = YAML::LoadFile("config.yaml");
 
-
-      if (config["name"]) {
+      for (YAML::const_iterator it=config.begin();it!=config.end();it++)
+ 	  { std::cout << it->first.as<std::string>() << std::endl; 
+       std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
+       Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
+       Node* node2  = new Node(config["name"].as<std::string>(), 1, 1);
+       Node* node3  = new Node(config["name"].as<std::string>(), 1, 1);
+       Graph g;
+       g.addNode(node1);
+       g.addNode(node2);
+       g.addNode(node3);
+       
+       g.addEdge(new Edge(*node1, *node2));
+       g.addEdge(new Edge(*node1, *node3)); 
+       g.addEdge(new Edge(*node3, *node2)); 
+      }
         
 
-        //std::cout << "Last logged in: " << paramter << "\n";
+       //std::cout << "Last logged in: " << config["name"].as<std::string>() << "\n";
 
        // std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
        // Node* node1  = new Node(config["name"].as<std::string>(), , );
@@ -97,16 +109,10 @@ int main(int argc, const char** argv)
 
         //Graph g;
        // g.addNode(node1);
-       // g.addNode(node2);
-       // g.addNode(node3);
-       
-        //g.addEdge(new Edge(*node1, *node2));
-        //g.addEdge(new Edge(*node1, *node3)); 
-        //g.addEdge(new Edge(*node3, *node2)); 
+
        
         //std::cout << g.toString() << std::endl;
      
-      }
     }
 
     return 0;
