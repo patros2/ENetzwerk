@@ -3,13 +3,14 @@
 #include <string>
 #include <time.h>
 #include <typeinfo>
-
-
+#include <deque>
 
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
 #include "./lib/docopt.cpp-master/docopt.h" 
 #include "./lib/NodesEdges/Node.h" 
 #include "./lib/NodesEdges/Graph.h"
+
+using namespace std;
 
 
 
@@ -42,7 +43,7 @@ std::string name;
 double berechnen(Node* a, Node* b, Node* c, Node* d){
 
     Node* masche [2][2] = {{a,b},{c,d}};
-   Node* knoten [2][2] = {{a,b},{c,d}};
+ //  Node* knoten [2][2] = {{a,b},{c,d}};
 
 
     for (int i=0;i<2;i++)
@@ -58,6 +59,7 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
             return wert;
             }
         }
+return 0;
 }
 
 int main(int argc, const char** argv)
@@ -96,7 +98,10 @@ int main(int argc, const char** argv)
       if (config.IsSequence()){
 	    std::cout << "Scalar: True" << std::endl;
       }
+      //
+
  
+        deque<Node*> network;
       // going through all elements in the YAMLK::Nodes object
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
  	  {
@@ -121,7 +126,7 @@ int main(int argc, const char** argv)
           {
             g.addEdge(new Edge(*node, *node));
           }
-
+          network.push_back(node);
 
           if (it->size() > 1)
           {
@@ -143,13 +148,17 @@ int main(int argc, const char** argv)
         }
 
        
-       // std::cout << it->first.as<std::string>() << std::endl; 
-       // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
+        // std::cout << it->first.as<std::string>() << std::endl; 
+        // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
         std::cout << "Test"<<std::endl;
 
-      //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
-      //  g.addNode(node1);
+        //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
+        //  g.addNode(node1);
 
+     }
+      for (size_t node_n = 0; node_n < network.size();node_n++)
+      {
+        cout << network[node_n] <<endl;
       }
         
        std::cout << g.toString() << std::endl;
