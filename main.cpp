@@ -83,22 +83,29 @@ int main(int argc, const char** argv)
     if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
       YAML::Node config = YAML::LoadFile("config.yaml");
 
-      for (YAML::const_iterator it=config.begin();it!=config.end();it++)
- 	  { std::cout << it->first.as<std::string>() << std::endl; 
-       std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
-       Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
-       Node* node2  = new Node(config["name"].as<std::string>(), 1, 1);
-       Node* node3  = new Node(config["name"].as<std::string>(), 1, 1);
-       Graph g;
-       g.addNode(node1);
-       g.addNode(node2);
-       g.addNode(node3);
-       
-       g.addEdge(new Edge(*node1, *node2));
-       g.addEdge(new Edge(*node1, *node3)); 
-       g.addEdge(new Edge(*node3, *node2)); 
+      Graph g;
+      
+      if (config.IsMap()){
+	    std::cout << "Map: True" << std::endl;
+      }
+      if (config.IsScalar()){
+	    std::cout << "Scalar: True" << std::endl;
+      }
+      if (config.IsSequence()){
+	    std::cout << "Scalar: True" << std::endl;
+      }
+      //for (YAML::const_iterator it=config.begin();it!=config.end();it++)
+ 	  { 
+      
+       // std::cout << it->first.as<std::string>() << std::endl; 
+       // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
+
+      //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
+      //  g.addNode(node1);
+
       }
         
+       std::cout << g.toString() << std::endl;
 
        //std::cout << "Last logged in: " << config["name"].as<std::string>() << "\n";
 
