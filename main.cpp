@@ -44,8 +44,13 @@ int main(void)
 
     //berechnen(a,b,c,d);
     std::cout << "Ende von berechnen, start von rs" << std::endl;
-    std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << std::endl;
-    std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn) << std::endl;
+    std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
+    std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn)  << " Ohm" << std::endl;
+    std::cout << "das ist der Widerstand des Netzwerks normal: " << testn.getwid() << std::endl;
+    std::cout << "das ist die Kapazitaet des Netzwerks normal: " << testn.getkap() << std::endl;
+    std::cout << "das ist die Spannung des Netzwerks normal: " << testn.getspa() << std::endl;
+    std::cout << "das ist die Induktivitaet des Netzwerks normal: " << testn.getind() << std::endl;
+    std::cout << "das ist die Stromstaerke des Netzwerks normal: " << testn.getstrom() << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();
