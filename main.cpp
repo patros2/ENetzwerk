@@ -5,10 +5,12 @@
 #include <typeinfo>
 
 
+
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
 #include "./lib/docopt.cpp-master/docopt.h" 
 #include "./lib/NodesEdges/Node.h" 
 #include "./lib/NodesEdges/Graph.h"
+
 
 
 
@@ -94,11 +96,56 @@ int main(int argc, const char** argv)
       if (config.IsSequence()){
 	    std::cout << "Scalar: True" << std::endl;
       }
-      //for (YAML::const_iterator it=config.begin();it!=config.end();it++)
- 	  { 
-      
+ 
+      // going through all elements in the YAMLK::Nodes object
+      for (YAML::const_iterator it=config.begin();it!=config.end();it++)
+ 	  {
+        if (it->IsSequence()){
+	      std::cout << "Scalar:Loop True" << std::endl;
+
+          // We have a object with n items, need to loop through
+          // not nice code, loop in a loop in a loopception....
+          std::cout << it->size()<< std::endl;
+          int name=0;
+          int id=1;
+          int conntect_to=2;
+          int value=3;
+
+          Node* node = new Node(
+                 (*it)[name].as<std::string>(),
+                 (*it)[id].as<int>(), 
+                 (*it)[value].as<int>());
+
+          g.addNode(node);
+          if ((*it)[conntect_to].as<int>() == (*it)[id].as<int>() )
+          {
+            g.addEdge(new Edge(*node, *node));
+          }
+
+
+          if (it->size() > 1)
+          {
+            std::cout << (*it)[0].as<char>() << "\n";
+            // The last 3 are ints 
+
+            for (std::size_t i=1;i<it->size();i++) 
+            {
+             std::cout << (*it)[i].as<int>() << "\n";
+            }
+          } 
+          
+        }
+        if (it->IsMap()){
+	      std::cout << "Map:Loop True" << std::endl;
+        }
+        if (it->IsScalar()){
+	      std::cout << "Scalar: True" << std::endl;
+        }
+
+       
        // std::cout << it->first.as<std::string>() << std::endl; 
        // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
+        std::cout << "Test"<<std::endl;
 
       //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
       //  g.addNode(node1);
