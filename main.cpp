@@ -46,11 +46,15 @@ int main(void)
     std::cout << "Ende von berechnen, start von rs" << std::endl;
     std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
     std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn)  << " Ohm" << std::endl;
-    std::cout << "das ist der Widerstand des Netzwerks normal: " << testn.getwid() << std::endl;
-    std::cout << "das ist die Kapazitaet des Netzwerks normal: " << testn.getkap() << std::endl;
-    std::cout << "das ist die Spannung des Netzwerks normal: " << testn.getspa() << std::endl;
-    std::cout << "das ist die Induktivitaet des Netzwerks normal: " << testn.getind() << std::endl;
-    std::cout << "das ist die Stromstaerke des Netzwerks normal: " << testn.getstrom() << std::endl;
+
+
+    std::cout << "das neu mit getwert fuer 1:  " << testn.getwert("3") << std::endl;
+    std::cout << "das neu mit getwert fuer Widerstand:  " << testn.getwert("Widerstan1d") << std::endl;
+
+    double t1 = w_rs(testn);
+    double t2 = w_ps(testn);
+    std::cout << "das ist rs: " << testn.setwert(1, t1) << std::endl;
+    std::cout << "das ist ps: " << testn.setwert(1, t2) << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();

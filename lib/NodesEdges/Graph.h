@@ -32,12 +32,9 @@ public:
 
     const std::list<Node*> getnodes() const { return m_nodes; }
 
-    const double getwid() const {return m_widerstand;}
-    const double getspa() const {return m_spannung;}
-    const double getind() const {return m_induktivitaet;}
-    const double getkap() const {return m_kapazitaet;}
-    const double getstrom() const {return m_stromstaerke;}
+    double getwert(std::string was);
 
+    double setwert(int was, double wert);
 
 
 private:

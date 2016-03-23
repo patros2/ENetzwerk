@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1458598639 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+1458775674 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
 	<stdio.h>
 	<iostream>
 	".\lib\NodesEdges\Edge.h"
@@ -15,13 +15,13 @@
 	<string>
 	"Node.h"
 
-1458600752 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.h
+1458774341 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.h
 	<list>
 	<string>
 	"Node.h"
 	"Edge.h"
 
-1458474450 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+1458774597 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
 	<typeinfo>
 	<stdio.h>
@@ -145,7 +145,7 @@
 	".\lib\NodesEdges\Graph.h"
 	".\lib\berechnungen\widerstand.h"
 
-1458585069 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
+1458776629 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
 	<stdio.h>
 	<iostream>
 	"widerstand.h"
@@ -174,5 +174,13 @@
 	"widerstand.h"
 
 1458509519 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\widerstand.h
+	"../NodesEdges/Graph.h"
+
+1458776708 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\kondensator.cpp
+	<stdio.h>
+	<iostream>
+	"kondensator.h"
+
+1458776222 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\kondensator.h
 	"../NodesEdges/Graph.h"
 
