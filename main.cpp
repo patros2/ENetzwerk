@@ -9,6 +9,7 @@
 #include "./lib/docopt.cpp-master/docopt.h" 
 #include "./lib/NodesEdges/Node.h" 
 #include "./lib/NodesEdges/Graph.h"
+#include "./lib/NodesEdges/Bauteil.h"
 
 using namespace std;
 
@@ -101,7 +102,7 @@ int main(int argc, const char** argv)
       //
 
  
-        deque<Node*> network;
+        deque<Bauteil*> network;
       // going through all elements in the YAMLK::Nodes object
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
  	  {
@@ -116,12 +117,15 @@ int main(int argc, const char** argv)
           int conntect_to=2;
           int value=3;
 
-          Node* node = new Node(
+          Bauteil* node = new Bauteil(
                  (*it)[name].as<std::string>(),
                  (*it)[id].as<int>(), 
-                 (*it)[value].as<int>());
+                 (*it)[value].as<int>(),
+                 (*it)[conntect_to].as<int>()
+          );
 
           g.addNode(node);
+    
           if ((*it)[conntect_to].as<int>() == (*it)[id].as<int>() )
           {
             g.addEdge(new Edge(*node, *node));
@@ -135,7 +139,8 @@ int main(int argc, const char** argv)
 
             for (std::size_t i=1;i<it->size();i++) 
             {
-             std::cout << (*it)[i].as<int>() << "\n";
+             cout << "Here" << endl;
+             cout << (*it)[i].as<int>() << "\n";
             }
           } 
           
@@ -156,9 +161,18 @@ int main(int argc, const char** argv)
         //  g.addNode(node1);
 
      }
+      // We have an arry with the objects. will access into the each
+      // of them to ensure that they:
+      // are equal or bigger than zero or they beginning one
+      // Maybe we should auto generate an ID for each object?
       for (size_t node_n = 0; node_n < network.size();node_n++)
       {
-        cout << network[node_n] <<endl;
+        cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
+        if ( network[node_n]->getConnection() == network[node_n + 1]->getType() )
+        {
+            g.addEdge(new Edge(network[node_n] ,network[node_n+1]));
+         
+        }
       }
         
        std::cout << g.toString() << std::endl;

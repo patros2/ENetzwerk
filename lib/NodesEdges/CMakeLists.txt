@@ -1,2 +1,2 @@
-add_library(NodesEdges STATIC Node.cpp Graph.cpp)
+add_library(NodesEdges STATIC Bauteil.cpp Node.cpp Graph.cpp)
 
