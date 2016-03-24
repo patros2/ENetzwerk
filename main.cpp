@@ -168,11 +168,27 @@ int main(int argc, const char** argv)
       for (size_t node_n = 0; node_n < network.size();node_n++)
       {
         cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
-        if ( network[node_n]->getConnection() == network[node_n + 1]->getType() )
-        {
-            g.addEdge(new Edge(network[node_n] ,network[node_n+1]));
+        // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
+        if ( node_n < network.size() - 1 && network[node_n]->getConnection() == network[node_n + 1]->getType())
+        { 
+         cout << &network[node_n] << endl;
+         Node*  test= dynamic_cast<Node*>( network[node_n] );
+         Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
+         cout <<test << endl;
+         // downcasting
+            g.addEdge(new Edge(*test, *test2));
          
         }
+         cout << "if end" << network[node_n]->getConnection() << endl;
+        if ( network[node_n]->getConnection() == 0 )
+        {
+         Node*  test= dynamic_cast<Node*>( network[node_n] );
+         Node*  test2= dynamic_cast<Node*>( network[0] );
+         g.addEdge(new Edge(*test, *test2));
+         cout << "here" << endl;
+        }
+
+
       }
         
        std::cout << g.toString() << std::endl;
