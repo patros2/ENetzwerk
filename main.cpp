@@ -167,19 +167,21 @@ int main(int argc, const char** argv)
       // Maybe we should auto generate an ID for each object?
       for (size_t node_n = 0; node_n < network.size();node_n++)
       {
+        cout << "DEBUG:" << node_n << endl;
         cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
         // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
-        if ( node_n < network.size() - 1 && network[node_n]->getConnection() == network[node_n + 1]->getType())
+        cout << "DEBUG: network.size()" << network.size() << endl;
+        if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getType())
         { 
-         cout << &network[node_n] << endl;
+         cout << "DEBUG: node_n -1:"<< (node_n + 1) << endl ;
+         cout << "DEBUG: add Node:" << node_n << " and Node" << node_n + 1 << endl;
          Node*  test= dynamic_cast<Node*>( network[node_n] );
          Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
-         cout <<test << endl;
          // downcasting
-            g.addEdge(new Edge(*test, *test2));
+         g.addEdge(new Edge(*test, *test2));
          
         }
-         cout << "if end" << network[node_n]->getConnection() << endl;
+       //end conenction
         if ( network[node_n]->getConnection() == 0 )
         {
          Node*  test= dynamic_cast<Node*>( network[node_n] );
@@ -188,7 +190,7 @@ int main(int argc, const char** argv)
          cout << "here" << endl;
         }
 
-
+       cout << endl;
       }
         
        std::cout << g.toString() << std::endl;
