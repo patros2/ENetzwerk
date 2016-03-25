@@ -113,9 +113,10 @@ std::string Graph::toString2()
 }
 
 //-------------------------------------------------------------------------------------------------
-//Prototyp, nicht getestet
+//Prototyp, kann vermutlich weg
 Node* Graph::getNode()
 {
+    printf("WAS?");
     Node* result[255];
     int i = 0;
     printf("\nWelcome to GetNode: \n");

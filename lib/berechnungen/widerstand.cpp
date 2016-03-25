@@ -10,18 +10,21 @@ double wms_wert = 0.0;
 
 double w_rs(Graph netz)
 {
-    int typ;
+    int typ = 0;
+    double temp = 0;
+    double temp1 = 0;
     std::list<Node*> speicher = netz.getnodes();
     int i = 0;
-    std::cout << "hier gehts rein" << std::endl;
 	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
 	{
 	    typ = (*it)->getType();
 	    if (typ == 1)
             {
             i = i + 1;
-            wrs_wert += (*it)->getValue();
-            std::cout << i << ".Wert: " << wrs_wert << std::endl;
+            temp1 = (*it)->getValue();
+            temp += (*it)->getValue();
+            wrs_wert = temp;
+            std::cout << i << ".Wert wrs: " << temp1 << std::endl;
             }
 	}
 
@@ -34,16 +37,18 @@ double w_ps(Graph netz)
     int typ;
     std::list<Node*> speicher = netz.getnodes();
     int i = 0;
-    double temp;
+    double temp=0;
+    double temp1=0;
 	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
 	{
 	    typ = (*it)->getType();
-	    if (typ == 2)
+	    if (typ == 1)
         {
             i = i + 1;
+            temp1 = (*it)->getValue();
             temp += 1/(*it)->getValue();
 
-            std::cout << i << ".Wert: " << temp << std::endl;
+            std::cout << i << ".Wert wps: " << temp1 << std::endl;
         }
 	}
     wps_wert = 1/temp;
@@ -59,7 +64,8 @@ return wms_wert;
 }
 
 
-//test mit array
+//test mit array, wird vermutlich nicht gebraucht
+/*
 double berechnen(Node* a, Node* b, Node* c, Node* d){
 
     double wert = 0;
@@ -88,3 +94,4 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
 
 }
 
+*/

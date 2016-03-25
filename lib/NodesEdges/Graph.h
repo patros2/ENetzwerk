@@ -27,7 +27,6 @@ public:
 
 	virtual ~Graph();
 
-    //std::list<Node*> getNode();
     Node* getNode();
 
     const std::list<Node*> getnodes() const { return m_nodes; }
