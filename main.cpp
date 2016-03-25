@@ -126,10 +126,10 @@ int main(int argc, const char** argv)
 
           g.addNode(node);
     
-          if ((*it)[conntect_to].as<int>() == (*it)[id].as<int>() )
-          {
-            g.addEdge(new Edge(*node, *node));
-          }
+          //if ((*it)[conntect_to].as<int>() == (*it)[id].as<int>() )
+          //{
+          //  g.addEdge(new Edge(*node, *node));
+          //}
           network.push_back(node);
 
           if (it->size() > 1)
