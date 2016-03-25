@@ -8,13 +8,21 @@ class Bauteil : public Node
 {
 
 public:
- Bauteil(std::string id, double value, int type, int conntect_to);
+ Bauteil(
+        std::string id,
+        double value, 
+        int type,
+        int root, 
+        int conntect_to
+        );
 
  int getConnection(){ return m_conntect_to;}
+ int getRoot(){ return m_root;}
 
 
 private:
    int m_conntect_to;
+   int m_root;
     
 };
 

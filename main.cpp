@@ -147,20 +147,24 @@ int main(int argc, const char** argv){
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
  	  {
         if (it->IsSequence()){
-	      std::cout << "Scalar:Loop True" << std::endl;
+	      //std::cout << "Scalar:Loop True" << std::endl;
 
           // We have a object with n items, need to loop through
           // not nice code, loop in a loop in a loopception....
-          std::cout << it->size()<< std::endl;
+          //std::cout << it->size()<< std::endl;
           int name=0;
-          int id=1;
-          int conntect_to=2;
-          int value=3;
+          int value=4;
+          int type=1;
+          int root=2;
+          int conntect_to=3;
 
+
+          //  Node("Widerstand", 1.7, 1);
           Bauteil* node = new Bauteil(
                  (*it)[name].as<std::string>(),
-                 (*it)[id].as<int>(), 
-                 (*it)[value].as<int>(),
+                 (*it)[value].as<int>(), 
+                 (*it)[type].as<int>(), 
+                 (*it)[root].as<int>(),
                  (*it)[conntect_to].as<int>()
           );
 
@@ -170,32 +174,34 @@ int main(int argc, const char** argv){
           //{
           //  g.addEdge(new Edge(*node, *node));
           //}
+          //cout << "DEBUG: push node to network: "<< node->getName() <<endl;
+         
           network.push_back(node);
 
           if (it->size() > 1)
           {
-            std::cout << (*it)[0].as<char>() << "\n";
+          //  std::cout << (*it)[0].as<char>() << "\n";
             // The last 3 are ints 
 
             for (std::size_t i=1;i<it->size();i++) 
             {
-             cout << "Here" << endl;
-             cout << (*it)[i].as<int>() << "\n";
+            // cout << "Here" << endl;
+             //cout << (*it)[i].as<int>() << "\n";
             }
           } 
           
         }
         if (it->IsMap()){
-	      std::cout << "Map:Loop True" << std::endl;
+	      //std::cout << "Map:Loop True" << std::endl;
         }
         if (it->IsScalar()){
-	      std::cout << "Scalar: True" << std::endl;
+	      //std::cout << "Scalar: True" << std::endl;
         }
 
        
         // std::cout << it->first.as<std::string>() << std::endl; 
         // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
-        std::cout << "Test"<<std::endl;
+        //std::cout << "Test"<<std::endl;
 
         //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
         //  g.addNode(node1);
@@ -207,14 +213,19 @@ int main(int argc, const char** argv){
       // Maybe we should auto generate an ID for each object?
       for (size_t node_n = 0; node_n < network.size();node_n++)
       {
-        cout << "DEBUG:" << node_n << endl;
-        cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
+        //cout << "DEBUG:" << node_n << endl;
+        //cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
         // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
         cout << "DEBUG: network.size()" << network.size() << endl;
-        if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getType())
+        cout << "DEBUG: node_n +1: " << node_n +1 << "network.size():" << network.size()
+              << "\nnetwork[node_n]->getConnection():" << network[node_n]->getConnection() << endl ;
+        if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getRoot())
         { 
-         cout << "DEBUG: node_n -1:"<< (node_n + 1) << endl ;
-         cout << "DEBUG: add Node:" << node_n << " and Node" << node_n + 1 << endl;
+         
+         //cout << "\n\nDEBUG: node_n + 1:"<< (node_n + 1) << endl ;
+         //cout << "DEBUG: add Node:" << node_n << " and Node" << node_n + 1 << endl;
+         //cout << "DEBUG: network[node_n]: " << network[node_n] 
+          //    << "network[node_n +1]" << network[node_n +1] << endl;
          Node*  test= dynamic_cast<Node*>( network[node_n] );
          Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
          // downcasting
@@ -227,8 +238,9 @@ int main(int argc, const char** argv){
          Node*  test= dynamic_cast<Node*>( network[node_n] );
          Node*  test2= dynamic_cast<Node*>( network[0] );
          g.addEdge(new Edge(*test, *test2));
-         cout << "DEBUG: end of network" << endl;
+         cout << "DEBUG:  network" << endl;
         }
+
 
        cout << endl;
       }

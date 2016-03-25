@@ -1,5 +1,5 @@
 # [K|SP|SQ|W] EigenID ZielID Wert
-- [U, 0 , 1 ,100]
-- [U, 1 , 2 ,100]
-- [K, 2 , 3, 100]
-- [L, 3 , 0, 100]
+- [Spannungsquelle, 4, 0 , 1 ,100]
+- [Spule,3 , 1 , 2 ,100]
+- [Widerstand,1, 2 , 3, 100]
+- [Kondensator,2, 3, 0, 100]
