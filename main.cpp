@@ -31,7 +31,7 @@ R"(ENetzwerk
 
 
 
-static const char VERSION[] = "ENetzwerk 0.2";
+static const char VERSION[] = "ENetzwerk 0.3";
 
 int main(int argc, const char** argv){
     std::map<std::string, docopt::value> args = docopt::docopt(USAGE, 
@@ -39,6 +39,7 @@ int main(int argc, const char** argv){
                                                   true,               // show help if requested
                                                   VERSION);  // version string
 
+    if (args["berechnen"].isBool() && args["berechnen"].asBool() == true ){
     Node* a = new Node("Spannungsquelle", 1.9, 4);
     Node* b = new Node("Kondesator", 3.5, 2);
     Node* c = new Node("Spule", 1.5, 3);
@@ -120,7 +121,7 @@ int main(int argc, const char** argv){
       std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << std::endl;
       std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << std::endl;
 
-    
+    }
 
 
     //std::cout << args["yaml"] << std::endl;
@@ -226,7 +227,7 @@ int main(int argc, const char** argv){
          Node*  test= dynamic_cast<Node*>( network[node_n] );
          Node*  test2= dynamic_cast<Node*>( network[0] );
          g.addEdge(new Edge(*test, *test2));
-         cout << "here" << endl;
+         cout << "DEBUG: end of network" << endl;
         }
 
        cout << endl;
