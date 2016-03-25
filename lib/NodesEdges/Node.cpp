@@ -22,13 +22,24 @@ Node::Node(std::string id, double value, int type) : m_id(id), m_value(value), m
 
 //Ergaenzungen
 
-double Node::generateValue()
+const double Node::generateValue()
 {
     return 0;
 }
 
-int Node::generateType()
+const int Node::generateType()
 {
     return 1;
 }
 
+const std::string Node::getName()
+{
+    switch(m_type)
+    {
+        case 1: m_name="Widerstand";        return m_name; break;
+        case 2: m_name="Kondensator";       return m_name; break;
+        case 3: m_name="Spule";             return m_name; break;
+        case 4: m_name="Spannungsquelle";   return m_name; break;
+    }
+
+}

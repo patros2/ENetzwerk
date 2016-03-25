@@ -1,18 +1,20 @@
 #include "Graph.h"
-
+#include <typeinfo>
+#include <stdio.h>
 
 //-------------------------------------------------------------------------------------------------
 
 Graph::~Graph()
 {
-
+    //rausgenommen, da sonst bei testnetz graph, nen fehler passiert
+    /*
 	for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
 	{
 		//Node* currentNode = *it;
 		//delete currentNode;
 		delete *it;
 	}
-
+*/
 	for (std::list<Edge*>::iterator it = m_edges.begin(); it != m_edges.end(); it++)
 	{
 		delete *it;
@@ -98,3 +100,32 @@ std::string Graph::toString()
 
 
 //-------------------------------------------------------------------------------------------------
+std::string Graph::toString2()
+{
+	std::string result;
+
+	for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
+	{
+		result += (*it)->getID() + "\n";
+	}
+
+	return result;
+}
+
+//-------------------------------------------------------------------------------------------------
+//Prototyp, nicht getestet
+Node* Graph::getNode()
+{
+    Node* result[255];
+    int i = 0;
+    printf("\nWelcome to GetNode: \n");
+//    std::cout << std::endl << "Welcome to GetNode: " << std::endl;
+    for (std::list<Node*>::iterator it = m_nodes.begin(); it != m_nodes.end(); it++)
+	{
+	    i =+1;
+		result[i] = (*it);
+		printf("%f\n",result[i]->getValue());
+	}
+    printf("%s\n",typeid(result[7]).name() );
+    return *result;
+}

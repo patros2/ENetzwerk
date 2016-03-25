@@ -13,8 +13,18 @@
 
 using namespace std;
 
+int main(void)
+{
 
+    Node* a = new Node("Spannungsquelle", 1.9, 4);
+    Node* b = new Node("Kondesator", 3.5, 2);
+    Node* c = new Node("Spule", 1.5, 3);
+    Node* d = new Node("Widerstand", 2.1, 1);
 
+    Node* e = new Node("Spannungsquelle", 1.9, 4);
+    Node* f = new Node("Kondesator", 3.5, 2);
+    Node* g = new Node("Spule", 1.5, 3);
+    Node* h = new Node("Widerstand", 2.3, 1);
 
 static const char USAGE[] =
 R"(ENetzwerk
@@ -28,24 +38,51 @@ R"(ENetzwerk
       --version     Show version.
 )";
 
+Graph netz;
+    netz.addNode(a);
+    netz.addNode(b);
+    netz.addNode(c);
+    netz.addNode(d);
 
+    Graph testn;
+    testn.addNode(e);
+    testn.addNode(f);
+    testn.addNode(g);
+    testn.addNode(h);
 
-static const char VERSION[] = "ENetzwerk 0.2";
+    std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
+/*
+    Node* container[11] = { 0 };
+    container[11] = netz.getNode();
 
+    std::cout << "Das ist der 3. Wert aus Netz: "<< container[2]->getValue() << std::endl;
+    std::cout << "Das ist der 1. Wert aus Netz: "<< container[0]->getValue() << std::endl;
+    std::cout << "Das ist der 4. Wert aus Netz: "<< container[3]->getValue() << std::endl;
+*/
+    std::cout << std::endl << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
 
-Node* a = new Node("Spannungsquelle", 1.9, 1);
-Node* b = new Node("Kondesator", 3.5, 0);
-Node* c = new Node("Spule", 1.5, 2);
-Node* d = new Node("Widerstand", 2.0, 3);
-double wert = 0;
-double test = 0;
-int z = 0;
-std::string name;
-double berechnen(Node* a, Node* b, Node* c, Node* d){
+    //berechnen(a,b,c,d);
+    std::cout << "Ende von berechnen, start von rs" << std::endl;
+    std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
+    std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn)  << " Ohm" << std::endl;
+    std::cout << "das ist der Widerstand des Netzwerks normal: " << testn.getwid() << std::endl;
+    std::cout << "das ist die Kapazitaet des Netzwerks normal: " << testn.getkap() << std::endl;
+    std::cout << "das ist die Spannung des Netzwerks normal: " << testn.getspa() << std::endl;
+    std::cout << "das ist die Induktivitaet des Netzwerks normal: " << testn.getind() << std::endl;
+    std::cout << "das ist die Stromstaerke des Netzwerks normal: " << testn.getstrom() << std::endl;
 
-    Node* masche [2][2] = {{a,b},{c,d}};
- //  Node* knoten [2][2] = {{a,b},{c,d}};
+    //double as = netz.getNode()->getValue();
+    //std::string ad = netz.getNode()->getName();
 
+    //std::cout << "das ist : " << as << std::endl;
+    //std::cout << "das ist : " << ad << std::endl;
+
+    std::cout << std::endl << "1" << std::endl << std::endl;
+using namespace std;
+    std::cout << a->getID() << " vom Typ " << a->getType() << " hat den Wert " << a->getValue() << " und ist ein/e " << a->getName() << std::endl;
+    std::cout << b->getID() << " vom Typ " << b->getType() << " hat den Wert " << b->getValue() << " und ist ein/e " << b->getName() << std::endl;
+    std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << " und ist ein/e " << c->getName() << std::endl;
+    std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << " und ist ein/e " << d->getName() << std::endl;
 
     for (int i=0;i<2;i++)
         {

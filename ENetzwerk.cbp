@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -29,18 +31,18 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="CMakeLists.txt" />
-<<<<<<< HEAD
 		<Unit filename="lib/NodesEdges/Edge.h" />
 		<Unit filename="lib/NodesEdges/Graph.cpp" />
 		<Unit filename="lib/NodesEdges/Graph.h" />
 		<Unit filename="lib/NodesEdges/Node.cpp" />
 		<Unit filename="lib/NodesEdges/Node.h" />
-=======
->>>>>>> patrick
+		<Unit filename="lib/berechnungen/widerstand.cpp" />
+		<Unit filename="lib/berechnungen/widerstand.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
