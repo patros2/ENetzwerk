@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <iostream>
-#include <string>
-#include <time.h>
-#include <typeinfo>
-#include <deque>
 
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
 #include "./lib/docopt.cpp-master/docopt.h" 
 #include "./lib/NodesEdges/Node.h" 
 #include "./lib/NodesEdges/Graph.h"
 #include "./lib/NodesEdges/Bauteil.h"
+#include "./lib/berechnungen/widerstand.h"
+#include "./lib/berechnungen/kondensator.h"
+
+
 
 using namespace std;
-
 int main(void)
 {
 
@@ -25,20 +24,11 @@ int main(void)
     Node* f = new Node("Kondesator", 3.5, 2);
     Node* g = new Node("Spule", 1.5, 3);
     Node* h = new Node("Widerstand", 2.3, 1);
+    Node* i = new Node("Kondesator", 2.5, 2);
+    Node* j = new Node("Spule", 1.5, 3);
+    Node* k = new Node("Widerstand", 1.7, 1);
 
-static const char USAGE[] =
-R"(ENetzwerk
-    Usage:
-      ENetzwerk yaml 
-      ENetzwerk berechnen 
-      ENetzwerk (-h | --help)
-      ENetzwerk --version
-    Options:
-      -h --help     Show this screen.
-      --version     Show version.
-)";
-
-Graph netz;
+    Graph netz;
     netz.addNode(a);
     netz.addNode(b);
     netz.addNode(c);
@@ -49,27 +39,39 @@ Graph netz;
     testn.addNode(f);
     testn.addNode(g);
     testn.addNode(h);
+    testn.addNode(i);
+    testn.addNode(k);
 
-    std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
-/*
+    //std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
+    /*
     Node* container[11] = { 0 };
     container[11] = netz.getNode();
 
     std::cout << "Das ist der 3. Wert aus Netz: "<< container[2]->getValue() << std::endl;
     std::cout << "Das ist der 1. Wert aus Netz: "<< container[0]->getValue() << std::endl;
     std::cout << "Das ist der 4. Wert aus Netz: "<< container[3]->getValue() << std::endl;
-*/
-    std::cout << std::endl << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
+    */
+    std::cout << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
 
-    //berechnen(a,b,c,d);
-    std::cout << "Ende von berechnen, start von rs" << std::endl;
+    std::cout << "start von w_rs" << std::endl;
     std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
     std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn)  << " Ohm" << std::endl;
-    std::cout << "das ist der Widerstand des Netzwerks normal: " << testn.getwid() << std::endl;
-    std::cout << "das ist die Kapazitaet des Netzwerks normal: " << testn.getkap() << std::endl;
-    std::cout << "das ist die Spannung des Netzwerks normal: " << testn.getspa() << std::endl;
-    std::cout << "das ist die Induktivitaet des Netzwerks normal: " << testn.getind() << std::endl;
-    std::cout << "das ist die Stromstaerke des Netzwerks normal: " << testn.getstrom() << std::endl;
+
+
+    std::cout << "das neu mit getwert fuer 1:  " << testn.getwert("3") << std::endl;
+    std::cout << "das neu mit getwert fuer Widerstand:  " << testn.getwert("Widerstan1d") << std::endl;
+
+    std::cout << std::endl << "break" << std::endl;
+    double t1 = w_rs(testn);
+    double t2 = w_ps(testn);
+    std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wrs: " << testn.setwert(1, t1) << " Ohm" << std::endl;
+    std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wps: " << testn.setwert(1, t2) << " Ohm" << std::endl;
+
+    std::cout << std::endl << "break" << std::endl;
+    double t3 = k_rs(testn);
+    double t4 = k_ps(testn);
+    std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus krs: " << testn.setwert(2, t3) << " Farad" << std::endl;
+    std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus kps: " << testn.setwert(2, t4) << " Farad" << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();
@@ -78,7 +80,6 @@ Graph netz;
     //std::cout << "das ist : " << ad << std::endl;
 
     std::cout << std::endl << "1" << std::endl << std::endl;
-using namespace std;
     std::cout << a->getID() << " vom Typ " << a->getType() << " hat den Wert " << a->getValue() << " und ist ein/e " << a->getName() << std::endl;
     std::cout << b->getID() << " vom Typ " << b->getType() << " hat den Wert " << b->getValue() << " und ist ein/e " << b->getName() << std::endl;
     std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << " und ist ein/e " << c->getName() << std::endl;

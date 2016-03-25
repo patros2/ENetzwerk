@@ -113,9 +113,10 @@ std::string Graph::toString2()
 }
 
 //-------------------------------------------------------------------------------------------------
-//Prototyp, nicht getestet
+//Prototyp, kann vermutlich weg
 Node* Graph::getNode()
 {
+    printf("WAS?");
     Node* result[255];
     int i = 0;
     printf("\nWelcome to GetNode: \n");
@@ -128,4 +129,48 @@ Node* Graph::getNode()
 	}
     printf("%s\n",typeid(result[7]).name() );
     return *result;
+}
+
+//-------------------------------------------------------------------------------------------------
+double Graph::getwert(std::string was)
+{
+double wert;
+if (was == "Widerstand" | was == "widerstand" | was == "1" | was == "W" | was == "w")
+    {
+        wert = m_widerstand;
+    }
+else if (was == "Kapazitaet" | was == "kapazitaet" | was == "2" | was == "K" | was == "k")
+    {
+        wert = m_kapazitaet;
+    }
+else if (was == "Induktivitaet" | was == "induktivitaet" | was == "3" | was == "SP" | was == "sp")
+    {
+        wert = m_induktivitaet;
+    }
+else if (was == "Spannung" | was == "spannung" | was == "4" | was == "SQ" | was == "sq")
+    {
+        wert = m_spannung;
+    }
+else if (was == "Stromstaerke" | was == "stromstaerke" | was == "5" | was == "S" | was == "s")
+    {
+        wert = m_stromstaerke;
+    }
+else
+    {
+        wert = 0;
+    }
+return wert;
+}
+//-------------------------------------------------------------------------------------------------
+double Graph::setwert(int was, double wert)
+{
+    switch(was)
+    {
+        case 1: m_widerstand = wert; break;
+        case 2: m_kapazitaet = wert; break;
+        case 3: m_induktivitaet = wert; break;
+        case 4: m_spannung = wert; break;
+        case 5: m_stromstaerke = wert; break;
+    }
+    return wert;
 }

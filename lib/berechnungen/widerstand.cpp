@@ -4,58 +4,68 @@
 #include "widerstand.h"
 
 
-double rs_wert = 0.0;
-double ps_wert = 0.0;
-double ms_wert = 0.0;
+double wrs_wert = 0.0;
+double wps_wert = 0.0;
+double wms_wert = 0.0;
 
 double w_rs(Graph netz)
 {
-    int typ;
+    int typ = 0;
+    double temp = 0;
+    double temp1 = 0;
     std::list<Node*> speicher = netz.getnodes();
     int i = 0;
-    std::cout << "hier gehts rein" << std::endl;
 	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
 	{
 	    typ = (*it)->getType();
 	    if (typ == 1)
             {
             i = i + 1;
-            rs_wert += (*it)->getValue();
-            std::cout << i << ".Wert: " << rs_wert << std::endl;
+            temp1 = (*it)->getValue();
+            temp += (*it)->getValue();
+            wrs_wert = temp;
+            std::cout << i << ".Wert wrs: " << temp1 << std::endl;
             }
 	}
 
 
-return rs_wert;
+return wrs_wert;
 }
 
 double w_ps(Graph netz)
 {
-
-std::list<Node*> speicher = netz.getnodes();
+    int typ;
+    std::list<Node*> speicher = netz.getnodes();
     int i = 0;
-    double temp;
+    double temp=0;
+    double temp1=0;
 	for (std::list<Node*>::iterator it = speicher.begin(); it != speicher.end(); it++)
 	{
-	    i = i + 1;
-		temp += 1/(*it)->getValue();
+	    typ = (*it)->getType();
+	    if (typ == 1)
+        {
+            i = i + 1;
+            temp1 = (*it)->getValue();
+            temp += 1/(*it)->getValue();
 
-		std::cout << i << ".Wert: " << temp << std::endl;
+            std::cout << i << ".Wert wps: " << temp1 << std::endl;
+        }
 	}
-    ps_wert = 1/temp;
+    wps_wert = 1/temp;
 
 
-return ps_wert;
+return wps_wert;
 }
 
 double w_ms(Graph* netz)
 {
 
-return ms_wert;
+return wms_wert;
 }
 
 
-//test mit array
+//test mit array, wird vermutlich nicht gebraucht
+/*
 double berechnen(Node* a, Node* b, Node* c, Node* d){
 
     double wert = 0;
@@ -84,3 +94,4 @@ double berechnen(Node* a, Node* b, Node* c, Node* d){
 
 }
 
+*/
