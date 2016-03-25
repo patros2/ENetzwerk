@@ -6,6 +6,8 @@
 #include ".\lib\NodesEdges\Graph.h"
 #include ".\lib\berechnungen\widerstand.h"
 #include ".\lib\berechnungen\kondensator.h"
+#include "./lib/berechnungen/spule.h"
+
 
 int main(void)
 {
@@ -20,7 +22,7 @@ int main(void)
     Node* g = new Node("Spule", 1.5, 3);
     Node* h = new Node("Widerstand", 2.3, 1);
     Node* i = new Node("Kondesator", 2.5, 2);
-    Node* j = new Node("Spule", 1.5, 3);
+    Node* j = new Node("Spule", 1.9, 3);
     Node* k = new Node("Widerstand", 1.7, 1);
 
     Graph netz;
@@ -35,6 +37,7 @@ int main(void)
     testn.addNode(g);
     testn.addNode(h);
     testn.addNode(i);
+    testn.addNode(j);
     testn.addNode(k);
 
     //std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
@@ -56,17 +59,35 @@ int main(void)
     std::cout << "das neu mit getwert fuer 1:  " << testn.getwert("3") << std::endl;
     std::cout << "das neu mit getwert fuer Widerstand:  " << testn.getwert("Widerstan1d") << std::endl;
 
+//test widerstand
     std::cout << std::endl << "break" << std::endl;
     double t1 = w_rs(testn);
     double t2 = w_ps(testn);
     std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wrs: " << testn.setwert(1, t1) << " Ohm" << std::endl;
     std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wps: " << testn.setwert(1, t2) << " Ohm" << std::endl;
-
+//test kondensator
     std::cout << std::endl << "break" << std::endl;
     double t3 = k_rs(testn);
     double t4 = k_ps(testn);
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus krs: " << testn.setwert(2, t3) << " Farad" << std::endl;
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus kps: " << testn.setwert(2, t4) << " Farad" << std::endl;
+
+//test spule
+    std::cout << std::endl << "break" << std::endl;
+    double t5 = s_rs(testn);
+    double t6 = s_ps(testn);
+    std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus srs: " << testn.setwert(3, t5) << " Henry" << std::endl;
+    std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus sps: " << testn.setwert(3, t6) << " Henry" << std::endl;
+
+
+//test gesamt netzwerk
+std::cout << std::endl << "break" << std::endl;
+std::cout << "Das Netzwerk hat:" << std::endl;
+std::cout << "Den Widerstand: " << testn.getwert("1") << " Ohm"  << std::endl;
+std::cout << "Den Kondensator: " << testn.getwert("2") << " Farad"  << std::endl;
+std::cout << "Die Spule: " << testn.getwert("3") << " Henry"  << std::endl;
+std::cout << "Die Spannungsquelle: " << testn.getwert("4") << " Volt"  << std::endl;
+std::cout << "Die Stromstaerke: " << testn.getwert("5") << " Amper"  << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();

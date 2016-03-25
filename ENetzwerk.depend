@@ -113,12 +113,12 @@
 	"Node.h"
 	"Edge.h"
 
-1458508746 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.cpp
+1458909346 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
 	<typeinfo>
 	<stdio.h>
 
-1458493408 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.h
+1458909346 c:\users\the_dark_knight\documents\github\enetzwerk\lib\nodesedges\graph.h
 	<list>
 	<string>
 	"Node.h"
@@ -138,13 +138,14 @@
 	<iomanip>
 	<cctype>
 
-1458509110 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
+1458909346 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
 	<stdio.h>
 	<iostream>
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
 	".\lib\berechnungen\widerstand.h"
+	".\lib\berechnungen\kondensator.h"
 
 1458904291 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
 	<stdio.h>
@@ -169,7 +170,7 @@
 1457988003 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
 
-1458509428 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
+1458909346 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\widerstand.cpp
 	<stdio.h>
 	<iostream>
 	"widerstand.h"
@@ -183,5 +184,21 @@
 	"kondensator.h"
 
 1458776222 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\kondensator.h
+	"../NodesEdges/Graph.h"
+
+1458909346 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\kondensator.cpp
+	<stdio.h>
+	<iostream>
+	"kondensator.h"
+
+1458909346 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\kondensator.h
+	"../NodesEdges/Graph.h"
+
+1458912555 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\spule.cpp
+	<stdio.h>
+	<iostream>
+	"spule.h"
+
+1458912574 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\spule.h
 	"../NodesEdges/Graph.h"
 
