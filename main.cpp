@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <iostream>
+#include <string>
+#include <time.h>
+#include <typeinfo>
+#include <deque>
+
 
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
 #include "./lib/docopt.cpp-master/docopt.h" 
@@ -12,8 +17,27 @@
 
 
 using namespace std;
-int main(void)
-{
+static const char USAGE[] =
+R"(ENetzwerk
+    Usage:
+      ENetzwerk yaml 
+      ENetzwerk berechnen 
+      ENetzwerk (-h | --help)
+      ENetzwerk --version
+    Options:
+      -h --help     Show this screen.
+      --version     Show version.
+)";
+
+
+
+static const char VERSION[] = "ENetzwerk 0.2";
+
+int main(int argc, const char** argv){
+    std::map<std::string, docopt::value> args = docopt::docopt(USAGE, 
+                                                  { argv + 1, argv + argc },
+                                                  true,               // show help if requested
+                                                  VERSION);  // version string
 
     Node* a = new Node("Spannungsquelle", 1.9, 4);
     Node* b = new Node("Kondesator", 3.5, 2);
@@ -85,31 +109,8 @@ int main(void)
     std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << " und ist ein/e " << c->getName() << std::endl;
     std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << " und ist ein/e " << d->getName() << std::endl;
 
-    for (int i=0;i<2;i++)
-        {
 
-        for (int j=0;j<2;j++)
-            {
-                z=z+1;
-                test = masche[i][j]->getValue();
-                name = masche[i][j]->getID();
-                printf("Lauf: %d, %d, %d, %f \n",z,i,j,test);
-                std::cout << name << std::endl;
-            return wert;
-            }
-        }
-return 0;
-}
 
-int main(int argc, const char** argv)
-{
-    std::map<std::string, docopt::value> args = docopt::docopt(USAGE, 
-                                                  { argv + 1, argv + argc },
-                                                  true,               // show help if requested
-                                                  VERSION);  // version string
-
-    if (args["berechnen"].isBool() && args["berechnen"].asBool() == true ){
-      berechnen(a,b,c,d);
 
     //printf("%f\n",berechnen(1,2,3,4));
 
@@ -119,7 +120,7 @@ int main(int argc, const char** argv)
       std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << std::endl;
       std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << std::endl;
 
-    }
+    
 
 
     //std::cout << args["yaml"] << std::endl;
@@ -248,6 +249,5 @@ int main(int argc, const char** argv)
      
     }
 
-    return 0;
 }
 
