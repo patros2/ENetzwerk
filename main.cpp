@@ -125,14 +125,14 @@ int main(int argc, const char** argv){
     }
 
 
-    //std::cout << args["yaml"] << std::endl;
+    cout << args["yaml"] << std::endl;
     if (args["yaml"].isBool() && args["yaml"].asBool() == true ){
       YAML::Node config = YAML::LoadFile("config.yaml");
 
       Graph g;
       deque<Bauteil*> network;
       // meta_list tracks the network segments
-      vector<deque<Bauteil*>> meta_network;
+
 
       // going through all elements in the YAMLK::Nodes object
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
@@ -181,6 +181,7 @@ int main(int argc, const char** argv){
      // verify that the fist and the last element of the network are connected
      if ( network[0]->getRoot() != network[network.size() - 1 ]->getConnection() )
      {
+         //Todo: need to check the entry network for a connection
          cout << "Network is not compete! Make sure that the last element and the first are connected!" << endl;
          return 3;
      }
@@ -204,12 +205,15 @@ int main(int argc, const char** argv){
      // need for parallel circut to loop reveres 
       for (size_t node_n = 0; node_n < network.size();node_n++)
         {
-        cout << "DEBUG:" << node_n << endl;
+        bool is_parallel;
+
+ 
+        //cout << "DEBUG:" << node_n << endl;
         //cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
         // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
-        cout << "DEBUG: network.size()" << network.size() << endl;
-        cout << "DEBUG: node_n +1: " << node_n +1 << "network.size():" << network.size()
-              << "\nnetwork[node_n]->getConnection():" << network[node_n]->getConnection() << endl ;
+        //cout << "DEBUG: network.size()" << network.size() << endl;
+        //cout << "DEBUG: node_n +1: " << node_n +1 << "network.size():" << network.size()
+        //      << "\nnetwork[node_n]->getConnection():" << network[node_n]->getConnection() << endl ;
         // Check for the current node and the Next destenation
         // build_network that can be added 
         // before this can add we need to check that 
@@ -219,22 +223,39 @@ int main(int argc, const char** argv){
           // we're look for more conenction that might have same root
           //if (network[node_n]->getConnection() )
           //{//}
-          // add nodes to the networkS
           Node*  test= dynamic_cast<Node*>( network[node_n] );
+          for (size_t rnode_n = network.size() - 1 ; rnode_n > node_n ;rnode_n-- )
+          {
+            cout << "DEBUG: reverse loop" << endl ;
+            cout <<  network[rnode_n] <<  network[node_n]->getRoot()<< endl;
+            if (network[rnode_n]->getConnection() == network[node_n]->getRoot() ){
+               is_parallel = true;
+               cout << "is_parallel: " << is_parallel << endl;
+                Node*  test2= dynamic_cast<Node*>( network[rnode_n] );
+                g.addEdge(new Edge(*test, *test2));
+            }
+          }
+          // add nodes to the networkS
           Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
           // downcasting
           g.addEdge(new Edge(*test, *test2));
           cout << "Test" << endl;
         }
+
+      //Start to segment the network 
+ 
+       vector<deque<Bauteil*>> meta_network;
        meta_network.push_back(network);
        //end conenction
+        /*
         if ( network[node_n]->getConnection() == 0 )
         {
          Node*  test= dynamic_cast<Node*>( network[node_n] );
          Node*  test2= dynamic_cast<Node*>( network[0] );
          g.addEdge(new Edge(*test, *test2));
          cout << "DEBUG:  network" << endl;
-        }}
+        }}*/
+       }
        std::cout << g.toString() << std::endl;
      
     }
