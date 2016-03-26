@@ -3,6 +3,8 @@
 
 #include <list>
 #include <string>
+#include <typeinfo>
+#include <stdio.h>
 
 #include "Node.h"
 #include "Edge.h"
@@ -30,6 +32,8 @@ public:
     Node* getNode();
 
     const std::list<Node*> getnodes() const { return m_nodes; }
+
+    const std::list<Edge*> getedges() const { return m_edges; }
 
     double getwert(std::string was);
 
