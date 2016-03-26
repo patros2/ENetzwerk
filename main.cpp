@@ -206,31 +206,28 @@ int main(int argc, const char** argv){
       for (size_t node_n = 0; node_n < network.size();node_n++)
         {
         bool is_parallel;
+        cout << node_n << endl;
 
- 
-        //cout << "DEBUG:" << node_n << endl;
-        //cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
         // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
-        //cout << "DEBUG: network.size()" << network.size() << endl;
-        //cout << "DEBUG: node_n +1: " << node_n +1 << "network.size():" << network.size()
-        //      << "\nnetwork[node_n]->getConnection():" << network[node_n]->getConnection() << endl ;
         // Check for the current node and the Next destenation
         // build_network that can be added 
         // before this can add we need to check that 
         if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getRoot())
+
         { 
           //verfiy that this is not a parallel network
           // we're look for more conenction that might have same root
           //if (network[node_n]->getConnection() )
           //{//}
           Node*  test= dynamic_cast<Node*>( network[node_n] );
-          for (size_t rnode_n = network.size() - 1 ; rnode_n > node_n ;rnode_n-- )
+          for (size_t rnode_n = network.size() - 1 ; rnode_n != node_n ;rnode_n-- )
           {
-            cout << "DEBUG: reverse loop" << endl ;
-            cout <<  network[rnode_n] <<  network[node_n]->getRoot()<< endl;
+            cout << "   DEBUG: reverse loop" << endl ;
+            cout <<  network[node_n]->getRoot() << "compare"<< network[rnode_n]->getConnection()<< endl;
+             
             if (network[rnode_n]->getConnection() == network[node_n]->getRoot() ){
                is_parallel = true;
-               cout << "is_parallel: " << is_parallel << endl;
+               cout << "   is_parallel: " << is_parallel << endl;
                 Node*  test2= dynamic_cast<Node*>( network[rnode_n] );
                 g.addEdge(new Edge(*test, *test2));
             }
