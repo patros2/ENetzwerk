@@ -129,20 +129,7 @@ int main(int argc, const char** argv){
       YAML::Node config = YAML::LoadFile("config.yaml");
 
       Graph g;
-      
-      if (config.IsMap()){
-	    std::cout << "Map: True" << std::endl;
-      }
-      if (config.IsScalar()){
-	    std::cout << "Scalar: True" << std::endl;
-      }
-      if (config.IsSequence()){
-	    std::cout << "Scalar: True" << std::endl;
-      }
-      //
-
- 
-        deque<Bauteil*> network;
+      deque<Bauteil*> network;
       // going through all elements in the YAMLK::Nodes object
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
  	  {
@@ -158,7 +145,6 @@ int main(int argc, const char** argv){
           int root=2;
           int conntect_to=3;
 
-
           //  Node("Widerstand", 1.7, 1);
           Bauteil* node = new Bauteil(
                  (*it)[name].as<std::string>(),
@@ -169,68 +155,72 @@ int main(int argc, const char** argv){
           );
 
           g.addNode(node);
-    
-          //if ((*it)[conntect_to].as<int>() == (*it)[id].as<int>() )
-          //{
-          //  g.addEdge(new Edge(*node, *node));
-          //}
-          //cout << "DEBUG: push node to network: "<< node->getName() <<endl;
-         
           network.push_back(node);
-
-          if (it->size() > 1)
-          {
-          //  std::cout << (*it)[0].as<char>() << "\n";
-            // The last 3 are ints 
-
-            for (std::size_t i=1;i<it->size();i++) 
-            {
-            // cout << "Here" << endl;
-             //cout << (*it)[i].as<int>() << "\n";
-            }
-          } 
-          
-        }
-        if (it->IsMap()){
-	      //std::cout << "Map:Loop True" << std::endl;
-        }
-        if (it->IsScalar()){
-	      //std::cout << "Scalar: True" << std::endl;
-        }
-
-       
-        // std::cout << it->first.as<std::string>() << std::endl; 
-        // std::cout << "Last logged in: " << config[it->first.as<std::string>()] << "\n";
-        //std::cout << "Test"<<std::endl;
-
-        //  Node* node1  = new Node(it->first.as<std::string>(), 1, 1);
-        //  g.addNode(node1);
-
+     }}
+     // we need to verify the network first
+     // check for desecend number order that ends in 0
+    
+     for (size_t node_n = 0; node_n < network.size();node_n++)
+     {
+       int c;
+       c = node_n;
+       if ( c != network[node_n]->getRoot())
+       {
+        // a throw would be nice , but this do the job
+         cout << "ID aren't consisten they need to be in a ascending order!" << endl;
+         return 2;
+      }
      }
-      // We have an arry with the objects. will access into the each
-      // of them to ensure that they:
-      // are equal or bigger than zero or they beginning one
-      // Maybe we should auto generate an ID for each object?
+
+     //evaluate connections 
+     // get the connection and ensure that the circut is complete
+     // verify that the fist and the last element of the network are connected
+     if ( network[0]->getRoot() != network[network.size() - 1 ]->getConnection() )
+     {
+         cout << "Network is not compete! Make sure that the last element and the first are connected!" << endl;
+         return 3;
+     }
+
+     
+     for (size_t node_n = 0; node_n < network.size();node_n++)
+     {
+       int c;
+       c = node_n;
+       if ( c != network[node_n]->getRoot())
+       {
+        // a throw would be nice , but this do the job
+         cout << "ID aren't consisten they need to be in a ascending order!" << endl;
+         return 2;
+      }
+     }
+
+     // We have an arry with the objects. will access into the each
+     // of them to ensure that they:
+     // are equal or bigger than zero or they beginning one
+     // Maybe we should auto generate an ID for each object?
       for (size_t node_n = 0; node_n < network.size();node_n++)
-      {
-        //cout << "DEBUG:" << node_n << endl;
+        {
+        cout << "DEBUG:" << node_n << endl;
         //cout << network[node_n]<< " "<< network[node_n]->getConnection() <<endl;
         // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
         cout << "DEBUG: network.size()" << network.size() << endl;
         cout << "DEBUG: node_n +1: " << node_n +1 << "network.size():" << network.size()
               << "\nnetwork[node_n]->getConnection():" << network[node_n]->getConnection() << endl ;
+        // Check for the current node and the Next destenation
+        // build_network that can be added 
+        // before this can add we need to check that 
         if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getRoot())
         { 
-         
-         //cout << "\n\nDEBUG: node_n + 1:"<< (node_n + 1) << endl ;
-         //cout << "DEBUG: add Node:" << node_n << " and Node" << node_n + 1 << endl;
-         //cout << "DEBUG: network[node_n]: " << network[node_n] 
-          //    << "network[node_n +1]" << network[node_n +1] << endl;
-         Node*  test= dynamic_cast<Node*>( network[node_n] );
-         Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
-         // downcasting
-         g.addEdge(new Edge(*test, *test2));
-         
+          //verfiy that this is not a parallel network
+          // we're look for more conenction that might have same root
+          //if (network[node_n]->getConnection() )
+          //{//}
+          // add nodes to the networkS
+          Node*  test= dynamic_cast<Node*>( network[node_n] );
+          Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
+          // downcasting
+          g.addEdge(new Edge(*test, *test2));
+          cout << "Test" << endl;
         }
        //end conenction
         if ( network[node_n]->getConnection() == 0 )
@@ -239,11 +229,9 @@ int main(int argc, const char** argv){
          Node*  test2= dynamic_cast<Node*>( network[0] );
          g.addEdge(new Edge(*test, *test2));
          cout << "DEBUG:  network" << endl;
-        }
-
-
-       cout << endl;
-      }
+        }}
+      // cout << endl;
+      //}
         
        std::cout << g.toString() << std::endl;
 
@@ -261,6 +249,5 @@ int main(int argc, const char** argv){
         //std::cout << g.toString() << std::endl;
      
     }
-
 }
 
