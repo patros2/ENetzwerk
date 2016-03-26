@@ -4,6 +4,7 @@
 #include <time.h>
 #include <typeinfo>
 #include <deque>
+#include <vector>
 
 
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
@@ -50,7 +51,7 @@ int main(int argc, const char** argv){
     Node* g = new Node("Spule", 1.5, 3);
     Node* h = new Node("Widerstand", 2.3, 1);
     Node* i = new Node("Kondesator", 2.5, 2);
-    Node* j = new Node("Spule", 1.5, 3);
+ //   Node* j = new Node("Spule", 1.5, 3);
     Node* k = new Node("Widerstand", 1.7, 1);
 
     Graph netz;
@@ -130,6 +131,9 @@ int main(int argc, const char** argv){
 
       Graph g;
       deque<Bauteil*> network;
+      // meta_list tracks the network segments
+      vector<deque<Bauteil*>> meta_network;
+
       // going through all elements in the YAMLK::Nodes object
       for (YAML::const_iterator it=config.begin();it!=config.end();it++)
  	  {
@@ -197,7 +201,7 @@ int main(int argc, const char** argv){
      // We have an arry with the objects. will access into the each
      // of them to ensure that they:
      // are equal or bigger than zero or they beginning one
-     // Maybe we should auto generate an ID for each object?
+     // need for parallel circut to loop reveres 
       for (size_t node_n = 0; node_n < network.size();node_n++)
         {
         cout << "DEBUG:" << node_n << endl;
@@ -222,6 +226,7 @@ int main(int argc, const char** argv){
           g.addEdge(new Edge(*test, *test2));
           cout << "Test" << endl;
         }
+       meta_network.push_back(network);
        //end conenction
         if ( network[node_n]->getConnection() == 0 )
         {
@@ -230,23 +235,7 @@ int main(int argc, const char** argv){
          g.addEdge(new Edge(*test, *test2));
          cout << "DEBUG:  network" << endl;
         }}
-      // cout << endl;
-      //}
-        
        std::cout << g.toString() << std::endl;
-
-       //std::cout << "Last logged in: " << config["name"].as<std::string>() << "\n";
-
-       // std::cout << typeid(config["name"].as<std::string>()).name() << std::endl;
-       // Node* node1  = new Node(config["name"].as<std::string>(), , );
-       // Node* node2 = new Node(config["name2"].as<std::string>());
-        //Node* node3 = new Node(config["name3"].as<std::string>());
-
-        //Graph g;
-       // g.addNode(node1);
-
-       
-        //std::cout << g.toString() << std::endl;
      
     }
 }
