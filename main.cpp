@@ -219,18 +219,20 @@ int main(int argc, const char** argv){
           // we're look for more conenction that might have same root
           //if (network[node_n]->getConnection() )
           //{//}
+          deque<Bauteil*> local_network = network;
           Node*  test= dynamic_cast<Node*>( network[node_n] );
-          for (size_t rnode_n = network.size() - 1 ; rnode_n != node_n ;rnode_n-- )
+          for (size_t rnode_n = local_network.size() - 1 ; rnode_n != 0;rnode_n-- )
           {
             cout << "   DEBUG: reverse loop" << endl ;
-            cout <<  network[node_n]->getRoot() << "compare"<< network[rnode_n]->getConnection()<< endl;
+            cout <<  local_network[node_n]->getRoot() << "compare"<< local_network[rnode_n]->getConnection()<< endl;
              
-            if (network[rnode_n]->getConnection() == network[node_n]->getRoot() ){
+            if (local_network[rnode_n]->getConnection() == local_network[node_n]->getRoot() ){
                is_parallel = true;
                cout << "   is_parallel: " << is_parallel << endl;
                 Node*  test2= dynamic_cast<Node*>( network[rnode_n] );
                 g.addEdge(new Edge(*test, *test2));
             }
+            local_network.pop_back();
           }
           // add nodes to the networkS
           Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
