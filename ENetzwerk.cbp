@@ -43,6 +43,10 @@
 		<Unit filename="lib/NodesEdges/Node.h" />
 		<Unit filename="lib/berechnungen/kondensator.cpp" />
 		<Unit filename="lib/berechnungen/kondensator.h" />
+		<Unit filename="lib/berechnungen/netzanalyse.cpp" />
+		<Unit filename="lib/berechnungen/netzanalyse.h" />
+		<Unit filename="lib/berechnungen/spule.cpp" />
+		<Unit filename="lib/berechnungen/spule.h" />
 		<Unit filename="lib/berechnungen/widerstand.cpp" />
 		<Unit filename="lib/berechnungen/widerstand.h" />
 		<Unit filename="main.cpp" />

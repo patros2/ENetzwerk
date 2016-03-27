@@ -10,18 +10,18 @@
 int main(void)
 {
 
-    Node* a = new Node("Spannungsquelle", 1.9, 4);
-    Node* b = new Node("Kondesator", 3.5, 2);
-    Node* c = new Node("Spule", 1.5, 3);
-    Node* d = new Node("Widerstand", 2.1, 1);
+    Node* a = new Node("SQ1", 1.9, 4);
+    Node* b = new Node("K1", 3.5, 2);
+    Node* c = new Node("SP1", 1.5, 3);
+    Node* d = new Node("W1", 2.1, 1);
 
-    Node* e = new Node("Spannungsquelle", 1.9, 4);
-    Node* f = new Node("Kondesator", 3.5, 2);
-    Node* g = new Node("Spule", 1.5, 3);
-    Node* h = new Node("Widerstand", 2.3, 1);
-    Node* i = new Node("Kondesator", 2.5, 2);
-    Node* j = new Node("Spule", 1.9, 3);
-    Node* k = new Node("Widerstand", 1.7, 1);
+    Node* e = new Node("SQ2", 1.2, 4);
+    Node* f = new Node("K2", 3.5, 2);
+    Node* g = new Node("Sp2", 1.5, 3);
+    Node* h = new Node("W2", 2.3, 1);
+    Node* i = new Node("K3", 2.5, 2);
+    Node* j = new Node("SP3", 1.9, 3);
+    Node* k = new Node("W3", 1.7, 1);
 
     Graph netz;
     netz.addNode(a);
@@ -40,12 +40,22 @@ int main(void)
 
     Edge* line1 = new Edge(*h,*k);
     Edge* line2 = new Edge(*f,*i);
+    Edge* line3 = new Edge(*j,*k);
     testn.addEdge(line1);
     testn.addEdge(line2);
+    testn.addEdge(line3);
+
+    //test edge mit baue
+    double t7 = spannung(testn);
+    testn.setwert(4,t7);
+
+
+
 
     //Test edge mit analyse
     std::cout << "mal gucken " << pot(line1) << std::endl;
     std::cout << "mal gucken " << pot(line2) << std::endl;
+    std::cout << "mal gucken " << pot(line3) << std::endl;
     std::cout << std::endl << "break break" << std::endl;
     //std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
     /*
@@ -56,7 +66,7 @@ int main(void)
     std::cout << "Das ist der 1. Wert aus Netz: "<< container[0]->getValue() << std::endl;
     std::cout << "Das ist der 4. Wert aus Netz: "<< container[3]->getValue() << std::endl;
     */
-    std::cout << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
+    //std::cout << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
 
     std::cout << "start von w_rs" << std::endl;
     std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
@@ -72,6 +82,13 @@ int main(void)
     double t2 = w_ps(testn);
     std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wrs: " << testn.setwert(1, t1) << " Ohm" << std::endl;
     std::cout << "das ist der W_Wert des netzes gesetzt mit dem Wert aus wps: " << testn.setwert(1, t2) << " Ohm" << std::endl;
+
+//test ob Strom berechnet wird
+    double t8 = strom(testn);
+    testn.setwert(5,t8);
+    std::cout << "strom: " << strom(testn) << std::endl;
+    std::cout << std::endl <<"TEST Der Strom: " << testn.getwert("5") << " Amper"  << std::endl;
+
 //test kondensator
     std::cout << std::endl << "break" << std::endl;
     double t3 = k_rs(testn);
@@ -79,12 +96,19 @@ int main(void)
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus krs: " << testn.setwert(2, t3) << " Farad" << std::endl;
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus kps: " << testn.setwert(2, t4) << " Farad" << std::endl;
 
+//test ob Strom berechnet wird
+    testn.setwert(1,0);
+    testn.setwert(3,0);
+    double t9 = strom(testn);
+    testn.setwert(5,t9);
+
 //test spule
     std::cout << std::endl << "break" << std::endl;
     double t5 = s_rs(testn);
     double t6 = s_ps(testn);
     std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus srs: " << testn.setwert(3, t5) << " Henry" << std::endl;
     std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus sps: " << testn.setwert(3, t6) << " Henry" << std::endl;
+
 
 
 //test gesamt netzwerk

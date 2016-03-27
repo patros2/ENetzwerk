@@ -25,3 +25,73 @@ double pot(Edge* line)
 
     return ausgabe;
 }
+
+double baue (Graph netz)
+{
+    std::list<Node*> speicher_n = netz.getnodes();
+    std::list<Edge*> speicher_e = netz.getedges();
+    Node typ;
+    Node typ2;
+    int temp;
+
+    for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
+        {
+            temp = (*it)->getType();
+
+        }
+
+
+    for (std::list<Edge*>::iterator it = speicher_e.begin(); it != speicher_e.end(); it++)
+        {
+            typ = (*it)->getDstNode();
+            typ2 = (*it)->getSrcNode();
+            std::cout << "das ist aus baue: " << (*it)->toString() << " T " << typ.getValue() << " nach " << typ2.getValue() << std::endl;
+        }
+        return 0;
+}
+
+
+double spannung(Graph netz)
+{
+    std::list<Node*> speicher_n = netz.getnodes();
+    int temp;
+    double spannung = 0;
+    for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
+        {
+            temp = (*it)->getType();
+            if ( temp == 4 )
+            {
+                spannung =+ (*it)->getValue();
+                netz.setwert(4, spannung);
+            }
+        }
+        return spannung;
+}
+
+double strom(Graph netz)
+{
+    double strom = 0;
+    double wid = netz.getwert("1");
+    double kap = netz.getwert("2");
+    double ind = netz.getwert("3");
+    double spa = netz.getwert("4");
+
+    //SQ und Spule
+    if  (wid == 0 && kap == 0)
+        {
+            std::cout << "treffer" << std::endl;
+        }
+    //SQ und Kondensator
+    else if (wid == 0 && ind == 0)
+        {
+            double t = 60*1000;
+            strom = (kap*1000000*spa)/t;
+        }
+    //SQ und Widerstand
+    else if (kap == 0 && ind == 0)
+        {
+            strom = spa / wid;
+        }
+    //returnwert bleibt nicht, daher nochmaliges setzen in der main
+    return netz.setwert(5,strom);
+}

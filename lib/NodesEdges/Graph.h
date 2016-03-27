@@ -46,11 +46,12 @@ private:
 	std::list<Edge*> m_edges;
     std::list<Node*> m_nodes;
 
-    double m_widerstand = 1;
-    double m_spannung = 2;
-    double m_induktivitaet = 3;
-    double m_kapazitaet = 4;
-    double m_stromstaerke = 5;
+    double m_widerstand = 0;
+    double m_spannung = 0;
+    double m_induktivitaet = 0;
+    double m_kapazitaet = 0;
+    double m_stromstaerke = 0;
+    double m_leistung = 0;
 };
 
 

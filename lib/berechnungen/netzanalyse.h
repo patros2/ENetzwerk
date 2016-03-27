@@ -8,5 +8,10 @@
 #include <iostream>
 
 double pot(Edge* line);
+double baue(Graph netz);
+double spannung(Graph netz);
+double strom(Graph netz);
+double leistung(Graph netz);
+
 
 #endif // NETZANALYSE_H_INCLUDED
