@@ -154,6 +154,10 @@ else if (was == "Stromstaerke" | was == "stromstaerke" | was == "5" | was == "S"
     {
         wert = m_stromstaerke;
     }
+else if (was == "Leistung" | was == "leistung" | was == "6" | was == "L" | was == "l")
+    {
+        wert = m_leistung;
+    }
 else
     {
         wert = 0;
@@ -170,6 +174,7 @@ double Graph::setwert(int was, double wert)
         case 3: m_induktivitaet = wert; break;
         case 4: m_spannung = wert; break;
         case 5: m_stromstaerke = wert; break;
+        case 6: m_leistung = wert; break;
     }
     return wert;
 }

@@ -13,5 +13,4 @@ double spannung(Graph netz);
 double strom(Graph netz);
 double leistung(Graph netz);
 
-
 #endif // NETZANALYSE_H_INCLUDED

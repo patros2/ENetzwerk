@@ -97,11 +97,11 @@ int main(void)
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus kps: " << testn.setwert(2, t4) << " Farad" << std::endl;
 
 //test ob Strom berechnet wird
-    testn.setwert(1,0);
+  /*  testn.setwert(1,0);
     testn.setwert(3,0);
     double t9 = strom(testn);
     testn.setwert(5,t9);
-
+*/
 //test spule
     std::cout << std::endl << "break" << std::endl;
     double t5 = s_rs(testn);
@@ -109,7 +109,8 @@ int main(void)
     std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus srs: " << testn.setwert(3, t5) << " Henry" << std::endl;
     std::cout << "das ist der S_Wert des netzes gesetzt mit dem Wert aus sps: " << testn.setwert(3, t6) << " Henry" << std::endl;
 
-
+    double t10 = leistung(testn);
+    testn.setwert(6,t10);
 
 //test gesamt netzwerk
     std::cout << std::endl << "break" << std::endl;
@@ -119,6 +120,7 @@ int main(void)
     std::cout << "Die Spule: " << testn.getwert("3") << " Henry"  << std::endl;
     std::cout << "Die Spannungsquelle: " << testn.getwert("4") << " Volt"  << std::endl;
     std::cout << "Die Stromstaerke: " << testn.getwert("5") << " Amper"  << std::endl;
+    std::cout << "Die Leistung: " << testn.getwert("6") << " Watt"  << std::endl;
 
     //double as = netz.getNode()->getValue();
     //std::string ad = netz.getNode()->getName();

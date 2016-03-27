@@ -55,6 +55,7 @@ double spannung(Graph netz)
 {
     std::list<Node*> speicher_n = netz.getnodes();
     int temp;
+
     double spannung = 0;
     for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
         {
@@ -92,6 +93,15 @@ double strom(Graph netz)
         {
             strom = spa / wid;
         }
+
     //returnwert bleibt nicht, daher nochmaliges setzen in der main
     return netz.setwert(5,strom);
+}
+
+double leistung(Graph netz)
+{
+    double spa = netz.getwert("4");
+    double strom = netz.getwert("5");
+    double leistung = spa * strom;
+    return leistung;
 }
