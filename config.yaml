@@ -1,6 +1,6 @@
-# [K|SP|SQ|W] EigenID ZielID Wert
-- [Spannungsquelle, 4, 0 , 1 ,100]
-- [Spule,3 , 1 , 2 ,100]
-- [Widerstand,1, 2 , 3, 100]
-- [Kondensator,2, 3, 0, 100]
-- [Kondensator,2, 4, 0, 100]
+# [K|SP|SQ|W] Type EigenID ZielID Wert
+- [Spannungsquelle, 4, 0 ,-[0,1,2,3]  ,100]
+- [Widerstand,1, 1 , 0, 100]
+- [Widerstand,1, 2 , 0, 100]
+- [Widerstand,1, 3 , 0, 100]
+- [Widerstand,1, 4 , 0, 100]
