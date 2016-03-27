@@ -235,12 +235,27 @@ int main(int argc, const char** argv){
           network.push_back(node);
 
           if ( network.size() >= 2 ){
-            cout << "network[(*it)[ root].as<int>()]"<< network[(*it)[ root].as<int>()]->getID() << " " << network[(*it)[conntect_to].as<int>()]->getID()  << endl;
+           // cout << "network[(*it)[ root].as<int>()]"<< network[(*it)[ root].as<int>()]->getID() << " " << network[(*it)[conntect_to].as<int>()]->getID()  << endl;
             g.addEdge(new Edge(*network[(*it)[ root].as<int>()], *network[(*it)[conntect_to].as<int>()]));
           }
-
-     }}
+        }
+     }
      cout << g.toString() << endl;
+
+     double testing = spannung(g);
+     g.setwert(4, testing);
+     cout << "Spannungswert: " << g.getwert("4") << endl;
+     cout << "Widerstand: " << g.getwert("1") << endl;
+     
+     double e = w_ps(g);
+     cout << e << endl;
+
+
+     vector<deque<Node*>> meta_network;
+     meta_network.push_back(network);
+
+
+
      // we need to verify the network first
      // check for desecend number order that ends in 0
     
