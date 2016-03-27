@@ -186,7 +186,7 @@ int main(int argc, const char** argv){
       YAML::Node config = YAML::LoadFile("config.yaml");
 
       Graph g;
-      deque<Bauteil*> network;
+      deque<Node*> network;
       // meta_list tracks the network segments
 
 
@@ -204,23 +204,47 @@ int main(int argc, const char** argv){
           int type=1;
           int root=2;
           int conntect_to=3;
+ 
+          //cout << (*it)[name].as<std::string> ()<< endl;
 
           //  Node("Widerstand", 1.7, 1);
-          Bauteil* node = new Bauteil(
+          Node* node = new Node(
                  (*it)[name].as<std::string>(),
                  (*it)[value].as<int>(), 
-                 (*it)[type].as<int>(), 
-                 (*it)[root].as<int>(),
-                 (*it)[conntect_to].as<int>()
-          );
+                 (*it)[type].as<int>()
+          );          
+                list<Node*> nodes = g.getnodes();
+                // (*it)[root].as<int>(),
+                // (*it)[conntect_to].as<int>()
+          //g.addNode(node);
 
-          g.addNode(node);
+          bool added = false;
+          //cout << "node-ID" << node->getID() <<  endl;
+          for (list<Node*>::iterator it = nodes.begin();it != nodes.end();it++){
+           //cout << "node-ID: " << node->getID() <<  " it->getID "<< (*it)->getID() << endl;
+           if (node->getID() == (*it)->getID()){
+            added = true;
+            }
+           }
+          if (added != true)
+          {
+            g.addNode(node);
+          }
+          //g.addEdge(new Edge(*test, *test2));
+          cout << "Nodes size: "<< nodes.size() << endl;
           network.push_back(node);
+
+          if ( network.size() >= 2 ){
+            cout << "network[(*it)[ root].as<int>()]"<< network[(*it)[ root].as<int>()]->getID() << " " << network[(*it)[conntect_to].as<int>()]->getID()  << endl;
+            g.addEdge(new Edge(*network[(*it)[ root].as<int>()], *network[(*it)[conntect_to].as<int>()]));
+          }
+
      }}
+     cout << g.toString() << endl;
      // we need to verify the network first
      // check for desecend number order that ends in 0
     
-     for (size_t node_n = 0; node_n < network.size();node_n++)
+    /* for (size_t node_n = 0; node_n < network.size();node_n++)
      {
        int c;
        c = node_n;
@@ -254,11 +278,13 @@ int main(int argc, const char** argv){
          return 2;
       }
      }
+    */
 
      // We have an arry with the objects. will access into the each
      // of them to ensure that they:
      // are equal or bigger than zero or they beginning one
      // need for parallel circut to loop reveres 
+     /*
       for (size_t node_n = 0; node_n < network.size();node_n++)
         {
         bool is_parallel;
@@ -301,6 +327,9 @@ int main(int argc, const char** argv){
       // for (size_t node_n = 0; node_n < network.size();node_n++) 
       // {
       // }
+       double testing = spannung(g);
+       g.setwert(4, testing);
+       cout << "Spannungswert: " << g.getwert("4") << endl;
  
        vector<deque<Bauteil*>> meta_network;
        meta_network.push_back(network);
@@ -315,6 +344,7 @@ int main(int argc, const char** argv){
        cout << &pCurrentEdge->getSrcNode() << endl;
        cout << &pCurrentEdge->getDstNode() << endl;
       }
+      */
      
     }
 }
