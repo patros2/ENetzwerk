@@ -242,19 +242,14 @@ int main(int argc, const char** argv){
         }
 
       //Start to segment the network 
+       for (size_t node_n; ;){
+       }
  
        vector<deque<Bauteil*>> meta_network;
        meta_network.push_back(network);
-       //end conenction
-        /*
-        if ( network[node_n]->getConnection() == 0 )
-        {
-         Node*  test= dynamic_cast<Node*>( network[node_n] );
-         Node*  test2= dynamic_cast<Node*>( network[0] );
-         g.addEdge(new Edge(*test, *test2));
-         cout << "DEBUG:  network" << endl;
-        }}*/
+
        }
+       // Split the network into single segments 
        std::cout << g.toString() << std::endl;
      
     }
