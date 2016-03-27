@@ -15,7 +15,7 @@ int main(void)
     Node* c = new Node("SP1", 1.5, 3);
     Node* d = new Node("W1", 2.1, 1);
 
-    Node* e = new Node("SQ2", 1.2, 4);
+    Node* e = new Node("SQ2", 100, 4);
     Node* f = new Node("K2", 3.5, 2);
     Node* g = new Node("Sp2", 1.5, 3);
     Node* h = new Node("W2", 2.3, 1);
@@ -45,9 +45,10 @@ int main(void)
     testn.addEdge(line2);
     testn.addEdge(line3);
 
-    //test edge mit baue
+    //test edge mit spannung
     double t7 = spannung(testn);
     testn.setwert(4,t7);
+    baue(testn);
 
 
 

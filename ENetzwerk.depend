@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1459076839 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+1459117995 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
@@ -210,13 +210,15 @@
 	<iostream>
 	"spule.h"
 
-1459076653 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
+1459118023 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
 	"netzanalyse.h"
 
-1459076431 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
+1459117929 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
 	"../NodesEdges/Graph.h"
 	"../NodesEdges/Edge.h"
 	"../NodesEdges/Node.h"
 	<stdio.h>
 	<iostream>
+	<utility>
+	<vector>
 

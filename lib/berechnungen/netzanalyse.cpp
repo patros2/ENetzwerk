@@ -33,6 +33,11 @@ double baue (Graph netz)
     Node typ;
     Node typ2;
     int temp;
+    int i = 0;
+    std::vector<std::pair<int, char>> vec;
+    vec.push_back(std::pair<int, char>(10, 'a'));
+
+    std::cout<<vec[0].first<<" "<<vec[0].second<<std::endl;
 
     for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
         {
@@ -43,8 +48,16 @@ double baue (Graph netz)
 
     for (std::list<Edge*>::iterator it = speicher_e.begin(); it != speicher_e.end(); it++)
         {
+            int i = i+1;
             typ = (*it)->getDstNode();
             typ2 = (*it)->getSrcNode();
+            Edge* lane = (*it);
+            std::vector<std::pair<Edge*, int>> vec;
+            vec.push_back(std::pair<Edge*, int>(lane, 2));
+
+            double a = vec[0].first->getDstNode().getValue();
+            std::cout << "das ist a: " << a << std::endl;
+            std::cout<<vec[0].first <<" "<<vec[0].second<<std::endl;
             std::cout << "das ist aus baue: " << (*it)->toString() << " T " << typ.getValue() << " nach " << typ2.getValue() << std::endl;
         }
         return 0;
