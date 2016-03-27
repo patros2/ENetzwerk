@@ -298,8 +298,9 @@ int main(int argc, const char** argv){
         }
 
       //Start to segment the network 
-//       for (size_t node_n; ;){
- //      }
+      // for (size_t node_n = 0; node_n < network.size();node_n++) 
+      // {
+      // }
  
        vector<deque<Bauteil*>> meta_network;
        meta_network.push_back(network);
@@ -307,6 +308,13 @@ int main(int argc, const char** argv){
        }
        // Split the network into single segments 
        std::cout << g.toString() << std::endl;
+       list<Edge*> t = g.getedges();
+        for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)                          
+      { 
+       Edge* pCurrentEdge = *it; 
+       cout << &pCurrentEdge->getSrcNode() << endl;
+       cout << &pCurrentEdge->getDstNode() << endl;
+      }
      
     }
 }
