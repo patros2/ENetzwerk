@@ -1,26 +1,40 @@
 #include "netzanalyse.h"
-
-double pot(Edge* line)
+//rechnet aus einer edge beide knoten zusammen
+double pot(Edge* line, int typ)
 {
-    std::cout << "start netzanalyse" << std::endl;
+    //std::cout << "start netzanalyse" << std::endl;
     double ausgabe = 0;
 
     double temp = 0;
     double temp1 = 0;
     Node start = line->getSrcNode();
     Node ende = line->getDstNode();
-    int typ = start.getType();
-    std::cout << "wert: " << start.getValue() << std::endl;
-    std::cout << "wert: " << ende.getValue() << std::endl;
-    if (typ == 1)
+    int bt = start.getType();
+    //std::cout << "wert: " << start.getValue() << std::endl;
+    //std::cout << "wert: " << ende.getValue() << std::endl;
+    //typ=reihenschaltung , bauteil=widerstand oder spule
+    if (typ == 1 && (bt == 1|| bt == 3))
         {
             ausgabe = start.getValue() + ende.getValue();
         }
-    else if (typ == 2)
+    //typ=reihenschaltung , bauteil = kondensator
+    else if (typ == 1 && bt == 2)
         {
             temp = 1/start.getValue();
             temp1 = 1/ende.getValue();
             ausgabe = 1/(temp+temp1);
+        }
+    //typ = parallelschaltung , bauteil = widerstand oder spule
+    else if (typ == 2 && (bt == 1||bt == 3))
+        {
+            temp = 1/start.getValue();
+            temp1 = 1/ende.getValue();
+            ausgabe = 1/(temp+temp1);
+        }
+    //typ = parallelschaltung , bauteil = kondesantor
+    else if (typ == 2 && bt == 2)
+        {
+            ausgabe = start.getValue() + ende.getValue();
         }
 
     return ausgabe;
@@ -51,10 +65,7 @@ double baue (Graph netz)
                 {
                     tiefe = 0;
                 }
-            else
-                {
-                    tiefe = 1;
-                }
+
             vec.push_back(std::pair<Edge*, int>(lane, tiefe));
             double a = vec[0].first->getDstNode().getValue();
             std::cout << "Edge: " << vec[i].first <<" Tiefe: "<<vec[i].second<<std::endl;
@@ -81,12 +92,12 @@ double baue (Graph netz)
                     dst2 = (*it).first->getDstNode();
                     src2_n = src2.getName();
                     dst2_n = dst2.getName();
-                    std::cout << "problem?" << std::endl;
+                    //std::cout << "problem?" << std::endl;
                     if (dst_n == src2_n)
                         {
                             lane = (*it).first;
 
-                            std::cout << "test?" << std::endl;
+                      //      std::cout << "test?" << std::endl;
                             vec_fertig.push_back(std::pair<Edge*, int>(lane, tiefe+1));
                         }
                 }

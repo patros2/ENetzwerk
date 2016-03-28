@@ -138,7 +138,7 @@
 	<iomanip>
 	<cctype>
 
-1459093070 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
+1459190049 source:c:\users\the_dark_knight\documents\github\enetzwerk\main.cpp
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
@@ -222,13 +222,15 @@
 	<utility>
 	<vector>
 
-1459093117 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
+1459188208 source:c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
 	"netzanalyse.h"
 
-1459092619 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
+1459186667 c:\users\the_dark_knight\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
 	"../NodesEdges/Graph.h"
 	"../NodesEdges/Edge.h"
 	"../NodesEdges/Node.h"
 	<stdio.h>
 	<iostream>
+	<utility>
+	<vector>
 

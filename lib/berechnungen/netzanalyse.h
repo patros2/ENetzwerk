@@ -9,7 +9,7 @@
 #include <utility>
 #include <vector>
 
-double pot(Edge* line);
+double pot(Edge* line, int type);
 double baue(Graph netz);
 double spannung(Graph netz);
 double strom(Graph netz);
