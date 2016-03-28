@@ -18,37 +18,6 @@
 #include "./lib/berechnungen/netzanalyse.h"
 
 
-Graph* to_tree(Graph* g)
-{
- std::list<Edge*> edges = (*g).getedges();
- for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)
- {
-  if ((*t)->getDstNode().getType() == 4 )
-  g->deleteEdge((*t));
- }
- return g;
-}
-
-
-int get_depth(Node* e, int depth){
-  // get a list of edges
-  std::list<Edge*>& edges= (*e).getOutgoingEdges();
-  depth = depth +1 ;
-  //std::cout << "depth is: " << depth << std::endl;
-  for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)
-  {
-    //std::cout << &(*t)->getDstNode() << std::endl;
-    //std::cout << &(*edges.begin())->getSrcNode() << std::endl;
-    //std::cout << &(*t)->getSrcNode() << std::endl;
-   if ( &(*edges.begin())->getSrcNode() !=  &(*t)->getSrcNode() )
-    {
-    get_depth(&(*t)->getDstNode(), depth);
-    }
-  }
-return depth;
-}
-
-
 
 using namespace std;
 static const char USAGE[] =
@@ -88,41 +57,143 @@ int main(int argc, const char** argv){
     Node* j = new Node("SP3", 1.9, 3);
     Node* k = new Node("W3", 1.7, 1);
 
+//hinzufuegen der nodes zum graphen
+    Graph g;
+    g.addNode(a);
+    g.addNode(b);
+    g.addNode(c);
+    g.addNode(d);
+    g.addNode(e);
+    g.addNode(f);
+    g.addNode(g1);
+    g.addNode(h);
+    g.addNode(i);
+    g.addNode(j);
+    g.addNode(k);
+    g.addNode(l);
+    g.addNode(m);
 
-    Graph netz;
-    netz.addNode(a);
-    netz.addNode(b);
-    netz.addNode(c);
-    netz.addNode(d);
+//erstellen der edges
+    Edge* swi1 = new Edge (*a , *d);
+    Edge* wi1w2 = new Edge (*a , *h);
+    Edge* wi2w3 = new Edge (*a , *k);
+    Edge* wi1s = new Edge (*d , *a);
+    Edge* wi2s = new Edge (*h , *a);
+    Edge* wi3s = new Edge (*k , *a);
+    Edge* sw1 = new Edge (*a , *d);
+    Edge* w1w2 = new Edge (*d , *h);
+    Edge* w2w3 = new Edge (*h , *k);
+    Edge* w3w4 = new Edge (*k , *l);
+    Edge* w4s = new Edge (*l , *a);
 
-    Graph testn;
-    testn.addNode(e);
-    testn.addNode(f);
-    testn.addNode(g);
-    testn.addNode(h);
-    testn.addNode(i);
-    testn.addNode(j);
-    testn.addNode(k);
+    Edge* sr1 = new Edge(*a, *d);
+    Edge* r1r2 = new Edge(*d, *h);
+    Edge* r1r3 = new Edge(*d, *k);
+    Edge* r2r4 = new Edge(*h, *l);
+    Edge* r3r4 = new Edge(*k, *l);
+    Edge* r4s = new Edge(*l , *a);
 
     Edge* line1 = new Edge(*h,*k);
     Edge* line2 = new Edge(*f,*i);
     Edge* line3 = new Edge(*j,*k);
-    testn.addEdge(line1);
-    testn.addEdge(line2);
-    testn.addEdge(line3);
+    Edge* line4 = new Edge(*e,*k);
 
-    //test edge mit baue
-    double t7 = spannung(testn);
-    testn.setwert(4,t7);
+    //hinzufuegen der edges zum Graphen
+    g.addEdge(line1);
+    g.addEdge(line2);
+    g.addEdge(line3);
+    g.addEdge(line4);
 
+//bis hier kann alles weg
+//start der Netzwerkberechnung
 
-
+    //setzen der spannung
+    double u = spannung(g);
+    g.setwert(4,u);
 
     //Test edge mit analyse
-    std::cout << "mal gucken " << pot(line1) << std::endl;
-    std::cout << "mal gucken " << pot(line2) << std::endl;
-    std::cout << "mal gucken " << pot(line3) << std::endl;
-    std::cout << std::endl << "break break" << std::endl;
+    std::cout << "widerstand in reihe " << pot(line1,1) << std::endl;
+    std::cout << "widerstand parallel " << pot(line1,2) << std::endl;
+    std::cout << "kondensator in reihe " << pot(line2,1) << std::endl;
+    std::cout << "kondensator parallel " << pot(line2,2) << std::endl;
+    std::cout << "spule in reihe " << pot(line3,1) << std::endl;
+    std::cout << "spule in parallel " << pot(line3,2) << std::endl;
+
+    //setzen des widerstandes
+    double wid = pot(line1,1);
+    g.setwert(1,wid);
+
+    //setzen der stromstaerke
+    double stromstaerke = strom(g);
+    g.setwert(5,stromstaerke);
+    //setzen der Leistung
+    double p = leistung(g);
+    g.setwert(6,p);
+
+//test gesamt netzwerk
+    std::cout << std::endl << "break" << std::endl;
+    std::cout << "Das Netzwerk hat:" << std::endl;
+    std::cout << "Den Widerstand: " << g.getwert("1") << " Ohm"  << std::endl;
+    std::cout << "Den Kondensator: " << g.getwert("2") << " Farad"  << std::endl;
+    std::cout << "Die Spule: " << g.getwert("3") << " Henry"  << std::endl;
+    std::cout << "Die Spannungsquelle: " << g.getwert("4") << " Volt"  << std::endl;
+    std::cout << "Die Stromstaerke: " << g.getwert("5") << " Amper"  << std::endl;
+    std::cout << "Die Leistung: " << g.getwert("6") << " Watt"  << std::endl;
+
+    std::cout << std::endl << "break" << std::endl;
+
+
+/*
+    gut.addEdge(swi1);
+    gut.addEdge(wi1w2);
+    gut.addEdge(wi2w3);
+    gut.addEdge(wi1s);
+    gut.addEdge(wi2s);
+    gut.addEdge(wi3s);
+*/
+
+
+
+    //test für widerstaende in reihe
+  /*  Graph info;
+    info.addNode(a);
+    info.addNode(d);
+    info.addNode(h);
+    info.addNode(k);
+    info.addNode(l);
+*/
+
+
+
+    //baue(test);
+
+
+    //std::cout << "raus" << std::endl;
+
+
+/*
+    std::list<Edge*> te = d->getOutgoingEdges();
+    //baue(info);
+    for (std::list<Edge*>::iterator it = te.begin(); it != te.end(); it++)
+        {
+                Node dst = (*it)->getDstNode();
+                std::string temp = dst.getName();
+                std::cout << "das ist temp: j" << temp << std::endl;
+        }
+  */  //std::cout << a->getOutgoingEdges(). << std::endl;
+
+  //  std::cout << "ausgerechnet baue (info): " << w_rs(info) << std::endl;
+  //  std::cout << "info zuende......" << std::endl;
+
+    //baue(gut);
+
+    //std::cout << "ausgerechnet baue (gut): " << w_ps(gut) << std::endl;
+    //std::cout << "gut zuende......" << std::endl;
+
+
+    //test edge mit spannung
+
+
     //std::cout << std::endl << "Das ist ein Wert aus Netz: \n" << netz.getNode() << std::endl;
     /*
     Node* container[11] = { 0 };
@@ -267,6 +338,7 @@ int main(int argc, const char** argv){
           network.push_back(node);
 
           if ( network.size() >= 2 ){
+           // cout << "network[(*it)[ root].as<int>()]"<< network[(*it)[ root].as<int>()]->getID() << " " << network[(*it)[conntect_to].as<int>()]->getID()  << endl;
             g.addEdge(new Edge(*network[(*it)[ root].as<int>()], *network[(*it)[conntect_to].as<int>()]));
           }
         }
@@ -298,31 +370,8 @@ int main(int argc, const char** argv){
      }
      /*
 
-     for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)
-
-      {
-       Edge* pCurrentEdge = *it; 
-       int count = 0;
-       //create a list of uniq items
-       for (std::list<Edge*>::iterator itt  = t.begin(); itt != t.end(); itt++)                          
-       {
-        if ( &(*itt)->getSrcNode() == &pCurrentEdge->getSrcNode())
-        {
-         count += 1;
-        }
-       }
-
-       cout << "getSrcNode: " << &pCurrentEdge->getSrcNode() << " count " << count <<endl;
-       if ( count > 1)
-       {
-        cout << "getSrcNode: " << &pCurrentEdge->getSrcNode() << " is parallel" << endl;
-       }
-       cout << "test2" << endl;
-       //t.pop_front();
-       // access an element that was already remove makes it very hard to work with
-
-      // cout <<"  "<< &pCurrentEdge->getDstNode() << endl;
-      } */
+     vector<deque<Node*>> meta_network;
+     meta_network.push_back(network);
 
 
 
@@ -420,7 +469,15 @@ int main(int argc, const char** argv){
        meta_network.push_back(network);
 
        }
-
+       // Split the network into single segments 
+       std::cout << g.toString() << std::endl;
+       list<Edge*> t = g.getedges();
+        for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)                          
+      { 
+       Edge* pCurrentEdge = *it; 
+       cout << &pCurrentEdge->getSrcNode() << endl;
+       cout << &pCurrentEdge->getDstNode() << endl;
+      }
       */
      
     }
