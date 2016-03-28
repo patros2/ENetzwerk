@@ -130,13 +130,16 @@ double spannung(Graph netz)
     int temp;
 
     double spannung = 0;
+    double spannung_temp = 0;
     for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
         {
             temp = (*it)->getType();
             if ( temp == 4 )
             {
-                spannung =+ (*it)->getValue();
+                spannung_temp = (*it)->getValue();
+                spannung = spannung + spannung_temp;
                 netz.setwert(4, spannung);
+                std::cout << "drin " << spannung << std::endl;
             }
         }
         return spannung;
@@ -177,4 +180,41 @@ double leistung(Graph netz)
     double strom = netz.getwert("5");
     double leistung = spa * strom;
     return leistung;
+}
+
+double gesamtwert(Graph netz)
+{
+    int temp;
+    double temp2;
+    double wert;
+    std::list<Node*>nodes = netz.getnodes();
+    for (std::list<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++)
+        {
+            temp = (*it)->getType();
+            if (temp == 1 || temp == 2 || temp == 3)
+            {
+                temp2 = (*it)->getValue();
+                wert = temp2;
+            }
+        }
+    std::cout << "hier gehts raus mit Gesamtwert: " << wert << std::endl;
+    return wert;
+}
+
+int gesamttyp(Graph netz)
+{
+    int temp;
+
+    int wert;
+    std::list<Node*>nodes = netz.getnodes();
+    for (std::list<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++)
+        {
+            temp = (*it)->getType();
+            if (temp == 1 || temp == 2 || temp == 3)
+            {
+                wert = temp;
+            }
+        }
+    std::cout << "hier gehts raus mit gesamttyp: " << wert << std::endl;
+    return wert;
 }

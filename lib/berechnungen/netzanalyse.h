@@ -14,6 +14,8 @@ double baue(Graph netz);
 double spannung(Graph netz);
 double strom(Graph netz);
 double leistung(Graph netz);
+double gesamtwert(Graph netz);
+int gesamttyp(Graph netz);
 
 
 #endif // NETZANALYSE_H_INCLUDED
