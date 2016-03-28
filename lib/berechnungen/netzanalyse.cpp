@@ -85,8 +85,7 @@ double strom(Graph netz)
     //SQ und Kondensator
     else if (wid == 0 && ind == 0)
         {
-            double t = 60*1000;
-            strom = (kap*1000000*spa)/t;
+            strom = (kap*spa);
         }
     //SQ und Widerstand
     else if (kap == 0 && ind == 0)

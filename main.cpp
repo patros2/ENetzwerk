@@ -97,11 +97,11 @@ int main(void)
     std::cout << "das ist der K_Wert des netzes gesetzt mit dem Wert aus kps: " << testn.setwert(2, t4) << " Farad" << std::endl;
 
 //test ob Strom berechnet wird
-  /*  testn.setwert(1,0);
+    testn.setwert(1,0);
     testn.setwert(3,0);
     double t9 = strom(testn);
     testn.setwert(5,t9);
-*/
+
 //test spule
     std::cout << std::endl << "break" << std::endl;
     double t5 = s_rs(testn);
