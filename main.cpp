@@ -20,6 +20,49 @@
 
 
 
+void sum_p(Node* a, Node* b, Graph* g)
+{
+  std::cout << "1" << std::endl;
+  Node* src = &(*a->getOutgoingEdges().begin())->getSrcNode();
+  std::string name = (*a->getOutgoingEdges().begin())->getDstNode().getID() + (*b->getOutgoingEdges().begin())->getDstNode().getID() ;
+  int type = (*a->getOutgoingEdges().begin())->getDstNode().getType();
+
+  Edge* c= new Edge(
+          (*a->getOutgoingEdges().begin())->getDstNode(),
+          (*b->getOutgoingEdges().begin())->getDstNode()
+    );
+  double value = pot(c,2);
+  
+  Node* z = new Node(name, value, type);
+  
+
+  g->deleteNode(a);
+  g->deleteNode(b);
+  g->addNode(z);
+  g->addEdge(new Edge(*src, *z));
+ 
+}
+
+
+void sum_r(Node* a, Node* b, Graph* g)
+{
+  
+  Node* src = &(*a->getOutgoingEdges().begin())->getSrcNode();
+  std::string name = (*a->getOutgoingEdges().begin())->getDstNode().getID() + (*b->getOutgoingEdges().begin())->getDstNode().getID() ;
+  int type = (*a->getOutgoingEdges().begin())->getDstNode().getType();
+
+  double value = pot((*b->getOutgoingEdges().begin()),1);
+  
+  Node* z = new Node(name, value, type);
+  
+  g->deleteNode(a);
+  g->deleteNode(b);
+  g->addNode(z);
+  g->addEdge(new Edge(*src, *z));
+ 
+}
+
+
 
 int count_edges(Node* n)
 {
@@ -434,10 +477,22 @@ int main(int argc, const char** argv){
      }
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      { 
-        cout << count_edges((*it)) << endl;
+       if (count_edges((*it)) > 1)
+       {
+       /*for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
+       {
+        cout << (*t)->getDstNode().getID() << endl;
+       }
+       */
+       
+       cout << "Klappt?" << endl;
+       cout << (*(*it)->getOutgoingEdges().begin())->getDstNode().getID() <<endl;
+       cout << (*(*it)->getOutgoingEdges().end())->getDstNode().getID() <<endl;
+
+       sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
+       cout << "Klappt!" << endl;
+      }
      }
-     
-     
     }
 }
 
