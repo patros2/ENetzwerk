@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1459117995 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
+1459166428 source:c:\users\ghostrider\documents\github\enetzwerk\main.cpp
 	".\lib\NodesEdges\Edge.h"
 	".\lib\NodesEdges\Node.h"
 	".\lib\NodesEdges\Graph.h"
@@ -8,7 +8,7 @@
 	"./lib/berechnungen/spule.h"
 	"./lib/berechnungen/netzanalyse.h"
 
-1458252505 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
+1459159653 c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.h
 	<string>
 	<list>
 
@@ -27,7 +27,7 @@
 1459076807 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\graph.cpp
 	"Graph.h"
 
-1458252505 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.cpp
+1459159654 source:c:\users\ghostrider\documents\github\enetzwerk\lib\nodesedges\node.cpp
 	"Node.h"
 	<sstream>
 	<iomanip>
@@ -210,10 +210,10 @@
 	<iostream>
 	"spule.h"
 
-1459118023 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
+1459164442 source:c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.cpp
 	"netzanalyse.h"
 
-1459117929 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
+1459152432 c:\users\ghostrider\documents\github\enetzwerk\lib\berechnungen\netzanalyse.h
 	"../NodesEdges/Graph.h"
 	"../NodesEdges/Edge.h"
 	"../NodesEdges/Node.h"

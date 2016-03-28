@@ -30,37 +30,86 @@ double baue (Graph netz)
 {
     std::list<Node*> speicher_n = netz.getnodes();
     std::list<Edge*> speicher_e = netz.getedges();
-    Node typ;
-    Node typ2;
-    int temp;
+    Node src,src2;
+    Node dst,dst2;
+    std::string src_n, src2_n;
+    std::string dst_n, dst2_n;
+    int temp = 99;
     int i = 0;
-    std::vector<std::pair<int, char>> vec;
-    vec.push_back(std::pair<int, char>(10, 'a'));
-
-    std::cout<<vec[0].first<<" "<<vec[0].second<<std::endl;
-
-    for (std::list<Node*>::iterator it = speicher_n.begin(); it != speicher_n.end(); it++)
-        {
-            temp = (*it)->getType();
-
-        }
-
-
+    int tiefe = 0;
+    std::vector<std::pair<Edge*, int>> vec;
+    std::vector<std::pair<Edge*, int>> vec_fertig;
+    std::cout << "setze alle edges mit sq am anfang auf tiefe 0" << std::endl;
     for (std::list<Edge*>::iterator it = speicher_e.begin(); it != speicher_e.end(); it++)
         {
-            int i = i+1;
-            typ = (*it)->getDstNode();
-            typ2 = (*it)->getSrcNode();
+            dst = (*it)->getDstNode();
+            src = (*it)->getSrcNode();
             Edge* lane = (*it);
-            std::vector<std::pair<Edge*, int>> vec;
-            vec.push_back(std::pair<Edge*, int>(lane, 2));
-
+            temp = src.getType();
+            std::cout << "typ: " << src.getType() << std::endl;
+            if (temp == 4)
+                {
+                    tiefe = 0;
+                }
+            else
+                {
+                    tiefe = 1;
+                }
+            vec.push_back(std::pair<Edge*, int>(lane, tiefe));
             double a = vec[0].first->getDstNode().getValue();
-            std::cout << "das ist a: " << a << std::endl;
-            std::cout<<vec[0].first <<" "<<vec[0].second<<std::endl;
-            std::cout << "das ist aus baue: " << (*it)->toString() << " T " << typ.getValue() << " nach " << typ2.getValue() << std::endl;
+            std::cout << "Edge: " << vec[i].first <<" Tiefe: "<<vec[i].second<<std::endl;
+            std::cout << "das ist aus baue: " << (*it)->toString() << " T " << src.getValue() << " nach " << dst.getValue() << std::endl;
+            i = i+1;
         }
-        return 0;
+
+    std::cout << "bearbeite edges mit tiefe 0" << std::endl;
+    for (std::vector<std::pair<Edge*, int>>::iterator it = vec.begin(); it != vec.end(); it++)
+    {
+        tiefe = (*it).second;
+        src = (*it).first->getSrcNode();
+        dst = (*it).first->getDstNode();
+        src_n = src.getName();
+        dst_n = dst.getName();
+        Edge* lane;
+        if(tiefe == 0)
+            {
+                std::cout << "es ist ein: " << src.getName() << " und ein " << dst.getName() << std::endl;
+
+            for (std::vector<std::pair<Edge*, int>>::iterator it = vec.begin(); it != vec.end(); it++)
+                {
+                    src2 = (*it).first->getSrcNode();
+                    dst2 = (*it).first->getDstNode();
+                    src2_n = src2.getName();
+                    dst2_n = dst2.getName();
+                    std::cout << "problem?" << std::endl;
+                    if (dst_n == src2_n)
+                        {
+                            lane = (*it).first;
+
+                            std::cout << "test?" << std::endl;
+                            vec_fertig.push_back(std::pair<Edge*, int>(lane, tiefe+1));
+                        }
+                }
+            }
+        std::cout << "drin " << tiefe << std::endl;
+    }
+
+i=0;
+std::cout << "letztes" << std::endl;
+for (std::vector<std::pair<Edge*, int>>::iterator it = vec_fertig.begin(); it != vec_fertig.end(); it++)
+    {
+        tiefe = (*it).second;
+        src = (*it).first->getSrcNode();
+        dst = (*it).first->getDstNode();
+        src_n = src.getName();
+        dst_n = dst.getName();
+        Edge* lane;
+        if(tiefe == 1)
+            {
+                std::cout << "es ist ein: " << src.getName() << " und ein " << dst.getName() << std::endl;
+            }
+    }
+    return 0;
 }
 
 
