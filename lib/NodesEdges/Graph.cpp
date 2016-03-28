@@ -1,6 +1,5 @@
 #include "Graph.h"
-#include <typeinfo>
-#include <stdio.h>
+
 
 
 Graph::~Graph()
@@ -13,12 +12,12 @@ Graph::~Graph()
 		//delete currentNode;
 		delete *it;
 	}
-*/
+
 	for (std::list<Edge*>::iterator it = m_edges.begin(); it != m_edges.end(); it++)
 	{
 		delete *it;
 	}
-
+*/
 }
 
 
