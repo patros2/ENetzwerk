@@ -1,8 +1,6 @@
 #include "Graph.h"
-#include <typeinfo>
-#include <stdio.h>
 
-//-------------------------------------------------------------------------------------------------
+
 
 Graph::~Graph()
 {
@@ -14,16 +12,15 @@ Graph::~Graph()
 		//delete currentNode;
 		delete *it;
 	}
-*/
+
 	for (std::list<Edge*>::iterator it = m_edges.begin(); it != m_edges.end(); it++)
 	{
 		delete *it;
 	}
-
+*/
 }
 
 
-//-------------------------------------------------------------------------------------------------
 
 void Graph::addNode(Node* pNode)
 {
@@ -31,7 +28,6 @@ void Graph::addNode(Node* pNode)
 }
 
 
-//-------------------------------------------------------------------------------------------------
 
 void Graph::addEdge(Edge* pEdge)
 {
@@ -40,7 +36,6 @@ void Graph::addEdge(Edge* pEdge)
 }
 
 
-//-------------------------------------------------------------------------------------------------
 
 void Graph::deleteNode(Node* pNode)
 {
@@ -74,7 +69,6 @@ void Graph::deleteNode(Node* pNode)
 }
 
 
-//-------------------------------------------------------------------------------------------------
 
 void Graph::deleteEdge(Edge* pEdge)
 {
@@ -84,7 +78,6 @@ void Graph::deleteEdge(Edge* pEdge)
 }
 
 
-//-------------------------------------------------------------------------------------------------
 
 std::string Graph::toString()
 {
@@ -99,7 +92,6 @@ std::string Graph::toString()
 }
 
 
-//-------------------------------------------------------------------------------------------------
 std::string Graph::toString2()
 {
 	std::string result;
@@ -112,7 +104,6 @@ std::string Graph::toString2()
 	return result;
 }
 
-//-------------------------------------------------------------------------------------------------
 //Prototyp, kann vermutlich weg
 Node* Graph::getNode()
 {
@@ -131,7 +122,6 @@ Node* Graph::getNode()
     return *result;
 }
 
-//-------------------------------------------------------------------------------------------------
 double Graph::getwert(std::string was)
 {
 double wert;
