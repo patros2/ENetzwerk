@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="lib\berechnungen\kondensator.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="66" topLine="0" />
@@ -14,21 +15,43 @@
 	<File name="lib\berechnungen\kondensator.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
+=======
+	<File name="lib\NodesEdges\Graph.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4349" topLine="144" />
 		</Cursor>
 	</File>
 	<File name="lib\NodesEdges\Graph.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="596" topLine="31" />
+			<Cursor1 position="372" topLine="31" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
 		</Cursor>
 	</File>
-	<File name="lib\berechnungen\netzanalyse.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lib\berechnungen\spule.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
+			<Cursor1 position="596" topLine="31" />
+=======
+			<Cursor1 position="450" topLine="36" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
+		</Cursor>
+	</File>
+	<File name="lib\berechnungen\netzanalyse.cpp" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="1067" topLine="24" />
+=======
+			<Cursor1 position="4123" topLine="116" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
 		</Cursor>
 	</File>
 	<File name="lib\NodesEdges\Node.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="107" topLine="3" />
+=======
+			<Cursor1 position="535" topLine="0" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
 		</Cursor>
 	</File>
 	<File name="lib\NodesEdges\Node.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -38,17 +61,26 @@
 	</File>
 	<File name="lib\berechnungen\netzanalyse.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="315" topLine="0" />
+=======
+			<Cursor1 position="386" topLine="0" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
 		</Cursor>
 	</File>
-	<File name="lib\berechnungen\widerstand.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="lib\NodesEdges\Node.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="971" topLine="21" />
+			<Cursor1 position="621" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="lib\berechnungen\kondensator.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="66" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="lib\NodesEdges\Edge.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="179" topLine="0" />
+			<Cursor1 position="301" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="lib\NodesEdges\Graph.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -56,9 +88,20 @@
 			<Cursor1 position="4544" topLine="158" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="lib\berechnungen\widerstand.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="100" topLine="0" />
+=======
+	<File name="lib\berechnungen\widerstand.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="415" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1007" topLine="54" />
+>>>>>>> 366d3f7515dac88954ae61f100549e54e7f98274
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
