@@ -9,7 +9,7 @@
 
 int main(void)
 {
-
+//Von hier bis
 //testbereich einlesen statisch
 
 //erstellen der nodes
@@ -75,6 +75,7 @@ int main(void)
     g.addEdge(line3);
     g.addEdge(line4);
 
+//bis hier kann alles weg
 //start der Netzwerkberechnung
 
     //setzen der spannung
