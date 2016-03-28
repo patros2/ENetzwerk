@@ -26,7 +26,7 @@ int main(void)
     Node* k = new Node("W3", 1.5, 1);
     Node* l = new Node("W4", 1.7, 1);
     Node* m = new Node("W5", 2.7, 1);
-    Node* n = new Node("SQ3", 100, 4);
+    Node* n = new Node("K4", 100, 2);
 
 //hinzufuegen der nodes zum graphen
     Graph g;
@@ -43,6 +43,7 @@ int main(void)
     g.addNode(k);
     g.addNode(l);
     g.addNode(m);
+    //g.addNode(n);
 
 //erstellen der edges
     Edge* swi1 = new Edge (*a , *d);
@@ -56,7 +57,6 @@ int main(void)
     Edge* w2w3 = new Edge (*h , *k);
     Edge* w3w4 = new Edge (*k , *l);
     Edge* w4s = new Edge (*l , *a);
-
     Edge* sr1 = new Edge(*a, *d);
     Edge* r1r2 = new Edge(*d, *h);
     Edge* r1r3 = new Edge(*d, *k);
@@ -90,9 +90,11 @@ int main(void)
     std::cout << "spule in reihe " << pot(line3,1) << std::endl;
     std::cout << "spule in parallel " << pot(line3,2) << std::endl;
 
-    //setzen des widerstandes
-    double wid = pot(line1,1);
-    g.setwert(1,wid);
+
+    //setzen des widerstandes, kondensators oder spule
+    double endwert = gesamtwert(g);
+    int endtyp = gesamttyp(g);
+    g.setwert(endtyp,endwert);
 
     //setzen der stromstaerke
     double stromstaerke = strom(g);
