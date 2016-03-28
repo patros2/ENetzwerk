@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <utility>
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -407,7 +408,7 @@ int main(int argc, const char** argv){
      cout << e << endl;
      list<Node*>  nodes_in_g = g.getnodes();
 
-     //vector<deque<Node*>> meta_network;
+     vector<deque<Node*>> meta_network;
      //meta_network.push_back(network);
      // Split the network into single segments 
      cout << g.toString() << std::endl;
@@ -415,13 +416,20 @@ int main(int argc, const char** argv){
      list<Edge*> to_count;
      
      int count = 0; 
+     std::vector<std::pair<Node*, int>> node_to_deep;
+
      to_tree(&g);
      cout << g.toString() << endl;
+     int cc=0;
 
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      {
-       cout <<"depth ist :"<< get_depth((*it), count) << "for node: " <<  (*it)->getID() << endl;
-       cout << count_edges(*it) << endl;
+       int d = get_depth((*it), count);
+       cout <<"depth ist: "<< d << " for node: " <<  (*it)->getID() << endl;
+       //d = get_depth((*it), count) ;
+       node_to_deep.push_back(pair<Node*, int>(*it, d));
+       cout << "\n\n\n\n" << node_to_deep[cc].second << node_to_deep[cc].first << endl;
+       cc = cc + 1;
      }
      /*
 
