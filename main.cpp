@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <deque>
 #include <vector>
+#include <list>
 
 #include "./lib/yaml-cpp-master/include/yaml-cpp/yaml.h" 
 #include "./lib/docopt.cpp-master/docopt.h" 
@@ -15,6 +16,37 @@
 #include "./lib/berechnungen/kondensator.h"
 #include "./lib/berechnungen/spule.h"
 #include "./lib/berechnungen/netzanalyse.h"
+
+
+Graph* to_tree(Graph* g)
+{
+ std::list<Edge*> edges = (*g).getedges();
+ for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)
+ {
+  if ((*t)->getDstNode().getType() == 4 )
+  g->deleteEdge((*t));
+ }
+ return g;
+}
+
+
+int get_depth(Node* e, int depth){
+  // get a list of edges
+  std::list<Edge*>& edges= (*e).getOutgoingEdges();
+  depth = depth +1 ;
+  //std::cout << "depth is: " << depth << std::endl;
+  for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)
+  {
+    //std::cout << &(*t)->getDstNode() << std::endl;
+    //std::cout << &(*edges.begin())->getSrcNode() << std::endl;
+    //std::cout << &(*t)->getSrcNode() << std::endl;
+   if ( &(*edges.begin())->getSrcNode() !=  &(*t)->getSrcNode() )
+    {
+    get_depth(&(*t)->getDstNode(), depth);
+    }
+  }
+return depth;
+}
 
 
 
@@ -210,7 +242,7 @@ int main(int argc, const char** argv){
           //  Node("Widerstand", 1.7, 1);
           Node* node = new Node(
                  (*it)[name].as<std::string>(),
-                 (*it)[value].as<int>(), 
+                 (*it)[value].as<double>(), 
                  (*it)[type].as<int>()
           );          
                 list<Node*> nodes = g.getnodes();
@@ -235,7 +267,6 @@ int main(int argc, const char** argv){
           network.push_back(node);
 
           if ( network.size() >= 2 ){
-           // cout << "network[(*it)[ root].as<int>()]"<< network[(*it)[ root].as<int>()]->getID() << " " << network[(*it)[conntect_to].as<int>()]->getID()  << endl;
             g.addEdge(new Edge(*network[(*it)[ root].as<int>()], *network[(*it)[conntect_to].as<int>()]));
           }
         }
@@ -249,10 +280,49 @@ int main(int argc, const char** argv){
      
      double e = w_ps(g);
      cout << e << endl;
+     list<Node*>  nodes_in_g = g.getnodes();
 
+     //vector<deque<Node*>> meta_network;
+     //meta_network.push_back(network);
+     // Split the network into single segments 
+     cout << g.toString() << std::endl;
+     list<Edge*> t = g.getedges();
+     list<Edge*> to_count;
+     
+     int count = 0; 
+     to_tree(&g);
+     cout << g.toString() << endl;
+     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     {
+     cout << get_depth((*it), count) << endl;
+     }
+     /*
 
-     vector<deque<Node*>> meta_network;
-     meta_network.push_back(network);
+     for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)
+
+      {
+       Edge* pCurrentEdge = *it; 
+       int count = 0;
+       //create a list of uniq items
+       for (std::list<Edge*>::iterator itt  = t.begin(); itt != t.end(); itt++)                          
+       {
+        if ( &(*itt)->getSrcNode() == &pCurrentEdge->getSrcNode())
+        {
+         count += 1;
+        }
+       }
+
+       cout << "getSrcNode: " << &pCurrentEdge->getSrcNode() << " count " << count <<endl;
+       if ( count > 1)
+       {
+        cout << "getSrcNode: " << &pCurrentEdge->getSrcNode() << " is parallel" << endl;
+       }
+       cout << "test2" << endl;
+       //t.pop_front();
+       // access an element that was already remove makes it very hard to work with
+
+      // cout <<"  "<< &pCurrentEdge->getDstNode() << endl;
+      } */
 
 
 
@@ -350,15 +420,7 @@ int main(int argc, const char** argv){
        meta_network.push_back(network);
 
        }
-       // Split the network into single segments 
-       std::cout << g.toString() << std::endl;
-       list<Edge*> t = g.getedges();
-        for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)                          
-      { 
-       Edge* pCurrentEdge = *it; 
-       cout << &pCurrentEdge->getSrcNode() << endl;
-       cout << &pCurrentEdge->getDstNode() << endl;
-      }
+
       */
      
     }
