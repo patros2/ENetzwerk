@@ -422,6 +422,7 @@ int main(int argc, const char** argv){
      cout << g.toString() << endl;
      int cc=0;
 
+     // build depth
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      {
        int d = get_depth((*it), count);
@@ -431,117 +432,11 @@ int main(int argc, const char** argv){
        cout << "\n\n\n\n" << node_to_deep[cc].second << node_to_deep[cc].first << endl;
        cc = cc + 1;
      }
-     /*
-
-     vector<deque<Node*>> meta_network;
-     meta_network.push_back(network);
-
-
-
-     // we need to verify the network first
-     // check for desecend number order that ends in 0
-    
-    /* for (size_t node_n = 0; node_n < network.size();node_n++)
-     {
-       int c;
-       c = node_n;
-       if ( c != network[node_n]->getRoot())
-       {
-        // a throw would be nice , but this do the job
-         cout << "ID aren't consisten they need to be in a ascending order!" << endl;
-         return 2;
-      }
+     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     { 
+        cout << count_edges((*it)) << endl;
      }
-
-     //evaluate connections 
-     // get the connection and ensure that the circut is complete
-     // verify that the fist and the last element of the network are connected
-     if ( network[0]->getRoot() != network[network.size() - 1 ]->getConnection() )
-     {
-         //Todo: need to check the entry network for a connection
-         cout << "Network is not compete! Make sure that the last element and the first are connected!" << endl;
-         return 3;
-     }
-
      
-     for (size_t node_n = 0; node_n < network.size();node_n++)
-     {
-       int c;
-       c = node_n;
-       if ( c != network[node_n]->getRoot())
-       {
-        // a throw would be nice , but this do the job
-         cout << "ID aren't consisten they need to be in a ascending order!" << endl;
-         return 2;
-      }
-     }
-    */
-
-     // We have an arry with the objects. will access into the each
-     // of them to ensure that they:
-     // are equal or bigger than zero or they beginning one
-     // need for parallel circut to loop reveres 
-     /*
-      for (size_t node_n = 0; node_n < network.size();node_n++)
-        {
-        bool is_parallel;
-        cout << node_n << endl;
-
-        // When the loop is over we need to stop accessing node_n -1 else it end's in a segfault
-        // Check for the current node and the Next destenation
-        // build_network that can be added 
-        // before this can add we need to check that 
-        if ( node_n  +1 < network.size()  && network[node_n]->getConnection() == network[node_n + 1]->getRoot())
-
-        { 
-          //verfiy that this is not a parallel network
-          // we're look for more conenction that might have same root
-          //if (network[node_n]->getConnection() )
-          //{//}
-          deque<Bauteil*> local_network = network;
-          Node*  test= dynamic_cast<Node*>( network[node_n] );
-          for (size_t rnode_n = local_network.size() - 1 ; rnode_n != 0;rnode_n-- )
-          {
-            cout << "   DEBUG: reverse loop" << endl ;
-            cout <<  local_network[node_n]->getRoot() << "compare"<< local_network[rnode_n]->getConnection()<< endl;
-             
-            if (local_network[rnode_n]->getConnection() == local_network[node_n]->getRoot() ){
-               is_parallel = true;
-               cout << "   is_parallel: " << is_parallel << endl;
-                Node*  test2= dynamic_cast<Node*>( network[rnode_n] );
-                g.addEdge(new Edge(*test, *test2));
-            }
-            local_network.pop_back();
-          }
-          // add nodes to the networkS
-          Node*  test2= dynamic_cast<Node*>( network[node_n +1] );
-          // downcasting
-          g.addEdge(new Edge(*test, *test2));
-          cout << "Test" << endl;
-        }
-
-      //Start to segment the network 
-      // for (size_t node_n = 0; node_n < network.size();node_n++) 
-      // {
-      // }
-       double testing = spannung(g);
-       g.setwert(4, testing);
-       cout << "Spannungswert: " << g.getwert("4") << endl;
- 
-       vector<deque<Bauteil*>> meta_network;
-       meta_network.push_back(network);
-
-       }
-       // Split the network into single segments 
-       std::cout << g.toString() << std::endl;
-       list<Edge*> t = g.getedges();
-        for (std::list<Edge*>::iterator it = t.begin(); it != t.end(); it++)                          
-      { 
-       Edge* pCurrentEdge = *it; 
-       cout << &pCurrentEdge->getSrcNode() << endl;
-       cout << &pCurrentEdge->getDstNode() << endl;
-      }
-      */
      
     }
 }
