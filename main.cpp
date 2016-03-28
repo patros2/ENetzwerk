@@ -17,6 +17,14 @@
 #include "./lib/berechnungen/spule.h"
 #include "./lib/berechnungen/netzanalyse.h"
 
+
+
+
+int count_edges(Node* n)
+{
+  return (*n).getOutgoingEdges().size();
+}
+
 Graph* to_tree(Graph* g)                                                                                      
   {                                                                                                             
    std::list<Edge*> edges = (*g).getedges();                                                                    
@@ -400,8 +408,8 @@ int main(int argc, const char** argv){
 
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      {
-       cout << get_depth((*it), count) << endl;
-       break;
+       cout <<"depth ist :"<< get_depth((*it), count) << "for node: " <<  (*it)->getID() << endl;
+       cout << count_edges(*it) << endl;
      }
      /*
 
