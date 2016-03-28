@@ -160,6 +160,10 @@ int main(int argc, const char** argv){
     g.addNode(i);
     g.addNode(j);
     g.addNode(k);
+    //g.addNode(k);
+    //g.addNode(l);
+    //g.addNode(m);
+    //g.addNode(n);
 
 //erstellen der edges
     Edge* swi1 = new Edge (*a , *d);
@@ -237,7 +241,7 @@ int main(int argc, const char** argv){
     std::cout << "Die Stromstaerke: " << g.getwert("5") << " Amper"  << std::endl;
     std::cout << "Die Leistung: " << g.getwert("6") << " Watt"  << std::endl;
 
-    std::cout << std::endl << "break" << std::endl;
+
 
 
 /*
