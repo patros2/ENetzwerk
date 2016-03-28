@@ -40,9 +40,9 @@ int main(void)
     g.addNode(h);
     g.addNode(i);
     g.addNode(j);
-    g.addNode(k);
-    g.addNode(l);
-    g.addNode(m);
+    //g.addNode(k);
+    //g.addNode(l);
+    //g.addNode(m);
     //g.addNode(n);
 
 //erstellen der edges
@@ -113,7 +113,7 @@ int main(void)
     std::cout << "Die Stromstaerke: " << g.getwert("5") << " Amper"  << std::endl;
     std::cout << "Die Leistung: " << g.getwert("6") << " Watt"  << std::endl;
 
-    std::cout << std::endl << "break" << std::endl;
+
 
 
 /*

@@ -156,18 +156,18 @@ double strom(Graph netz)
     //SQ und Spule
     if  (wid == 0 && kap == 0)
         {
-            std::cout << "treffer" << std::endl;
+            strom = spa/ind;
         }
     //SQ und Kondensator
     else if (wid == 0 && ind == 0)
         {
 
-            strom = (kap*spa);
+            strom = kap*spa;
         }
     //SQ und Widerstand
     else if (kap == 0 && ind == 0)
         {
-            strom = spa / wid;
+            strom = spa/wid;
         }
 
     //returnwert bleibt nicht, daher nochmaliges setzen in der main
@@ -197,10 +197,11 @@ double gesamtwert(Graph netz)
                 wert = temp2;
             }
         }
-    std::cout << "hier gehts raus mit Gesamtwert: " << wert << std::endl;
+
     return wert;
 }
 
+//
 int gesamttyp(Graph netz)
 {
     int temp;
@@ -215,6 +216,6 @@ int gesamttyp(Graph netz)
                 wert = temp;
             }
         }
-    std::cout << "hier gehts raus mit gesamttyp: " << wert << std::endl;
+
     return wert;
 }
