@@ -17,6 +17,41 @@
 #include "./lib/berechnungen/spule.h"
 #include "./lib/berechnungen/netzanalyse.h"
 
+Graph* to_tree(Graph* g)                                                                                      
+  {                                                                                                             
+   std::list<Edge*> edges = (*g).getedges();                                                                    
+   for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)                                    
+   {                                                                                                            
+    if ((*t)->getDstNode().getType() == 4 )                                                                     
+    g->deleteEdge((*t));                                                                                        
+   }                                                                                                            
+   return g;                                                                                                    
+}                                                                                                             
+                                                                                                                
+                                                                                                                
+  int get_depth(Node* e, int depth){                                                                            
+    // get a list of edges                                                                                      
+    std::list<Edge*>& edges= (*e).getOutgoingEdges();                                                           
+    depth = depth +1 ;                                                                                          
+    //std::cout << "depth is: " << depth << std::endl;                                                          
+    for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)                                   
+    {                                                                                                           
+      //std::cout << "&(*t)->getDstNode() " <<  &(*t)->getDstNode() << std::endl;                                                          
+      //std::cout << " &(*edges.begin())->getSrcNode() " << &(*edges.begin())->getSrcNode() << std::endl;                                              
+      //std::cout << " &(*t)->getSrcNode() "<< &(*t)->getSrcNode() << std::endl;                                                          
+      //std::cout << " (*e).getID() " << (*e).getID() << std::endl;                                              
+      //std::cout << " &(*t)->getDstNode() "<<(*t)->getDstNode().getID() << std::endl;                                                          
+      //std::cout << " &(*t)->getDstNode() "<<(*t)->getDstNode().getOutgoingEdges().empty() << std::endl;                                                          
+     if ( (*t)->getDstNode().getOutgoingEdges().empty() == 0)
+     { 
+      //std::cout << "True" << std::endl;
+      depth = get_depth(&(*t)->getDstNode(), depth);
+      }                                                                                                         
+    }                                                                                                           
+  return depth;                                                                                                 
+  }                                                                                                             
+
+
 
 
 using namespace std;
@@ -51,7 +86,7 @@ int main(int argc, const char** argv){
 
     Node* e = new Node("SQ2", 1.2, 4);
     Node* f = new Node("K2", 3.5, 2);
-    Node* g = new Node("Sp2", 1.5, 3);
+    Node* g1 = new Node("Sp2", 1.5, 3);
     Node* h = new Node("W2", 2.3, 1);
     Node* i = new Node("K3", 2.5, 2);
     Node* j = new Node("SP3", 1.9, 3);
@@ -70,8 +105,6 @@ int main(int argc, const char** argv){
     g.addNode(i);
     g.addNode(j);
     g.addNode(k);
-    g.addNode(l);
-    g.addNode(m);
 
 //erstellen der edges
     Edge* swi1 = new Edge (*a , *d);
@@ -83,15 +116,7 @@ int main(int argc, const char** argv){
     Edge* sw1 = new Edge (*a , *d);
     Edge* w1w2 = new Edge (*d , *h);
     Edge* w2w3 = new Edge (*h , *k);
-    Edge* w3w4 = new Edge (*k , *l);
-    Edge* w4s = new Edge (*l , *a);
 
-    Edge* sr1 = new Edge(*a, *d);
-    Edge* r1r2 = new Edge(*d, *h);
-    Edge* r1r3 = new Edge(*d, *k);
-    Edge* r2r4 = new Edge(*h, *l);
-    Edge* r3r4 = new Edge(*k, *l);
-    Edge* r4s = new Edge(*l , *a);
 
     Edge* line1 = new Edge(*h,*k);
     Edge* line2 = new Edge(*f,*i);
@@ -103,6 +128,14 @@ int main(int argc, const char** argv){
     g.addEdge(line2);
     g.addEdge(line3);
     g.addEdge(line4);
+    to_tree(&g);
+    cout << g.toString() << endl;
+    int ca =0;
+    list<Node*>  nodes_in_g = g.getnodes();
+    for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     {
+     cout << get_depth((*it), ca) << endl;
+     }
 
 //bis hier kann alles weg
 //start der Netzwerkberechnung
@@ -204,7 +237,7 @@ int main(int argc, const char** argv){
     std::cout << "Das ist der 4. Wert aus Netz: "<< container[3]->getValue() << std::endl;
     */
     //std::cout << "Das ist das vollstaendige Netz: \n" << netz.toString2() << std::endl;
-
+/*
     std::cout << "start von w_rs" << std::endl;
     std::cout << "Das Ergebnis der Reihenschaltung der Widerstaende aus testn ist: " << w_rs(testn) << " Ohm" << std::endl;
     std::cout << "Das Ergebnis der Parallelschaltung der Widerstaende aus testn ist: " << w_ps(testn)  << " Ohm" << std::endl;
@@ -269,7 +302,7 @@ int main(int argc, const char** argv){
     std::cout << b->getID() << " vom Typ " << b->getType() << " hat den Wert " << b->getValue() << " und ist ein/e " << b->getName() << std::endl;
     std::cout << c->getID() << " vom Typ " << c->getType() << " hat den Wert " << c->getValue() << " und ist ein/e " << c->getName() << std::endl;
     std::cout << d->getID() << " vom Typ " << d->getType() << " hat den Wert " << d->getValue() << " und ist ein/e " << d->getName() << std::endl;
-
+*/
 
 
 
@@ -364,9 +397,11 @@ int main(int argc, const char** argv){
      int count = 0; 
      to_tree(&g);
      cout << g.toString() << endl;
+
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      {
-     cout << get_depth((*it), count) << endl;
+       cout << get_depth((*it), count) << endl;
+       break;
      }
      /*
 
