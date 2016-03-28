@@ -20,17 +20,16 @@
 
 
 
-void sum_p(Node* a, Node* b, Graph* g)
+void sum_p(Node* src, Node* a, Node* b, Graph* g)
 {
-  std::cout << "1" << std::endl;
-  Node* src = &(*a->getOutgoingEdges().begin())->getSrcNode();
-  std::string name = (*a->getOutgoingEdges().begin())->getDstNode().getID() + (*b->getOutgoingEdges().begin())->getDstNode().getID() ;
-  int type = (*a->getOutgoingEdges().begin())->getDstNode().getType();
 
-  Edge* c= new Edge(
-          (*a->getOutgoingEdges().begin())->getDstNode(),
-          (*b->getOutgoingEdges().begin())->getDstNode()
-    );
+
+  std::string name = (*a).getID() + (*b).getID() ;
+
+  int type = (*a).getType();
+
+  Edge* c= new Edge((*a),(*b));
+  std::cout << "3"<< name << std::endl;
   double value = pot(c,2);
   
   Node* z = new Node(name, value, type);
@@ -145,7 +144,6 @@ int main(int argc, const char** argv){
     Node* k = new Node("W3", 1.7, 1);
     Node* l = new Node("W4", 1.7, 1);
     Node* m = new Node("W5", 2.7, 1);
-    Node* n = new Node("K4", 100, 2);
 
 //hinzufuegen der nodes zum graphen
     Graph g;
@@ -166,6 +164,7 @@ int main(int argc, const char** argv){
     //g.addNode(n);
 
 //erstellen der edges
+/*
     Edge* swi1 = new Edge (*a , *d);
     Edge* wi1w2 = new Edge (*a , *h);
     Edge* wi2w3 = new Edge (*a , *k);
@@ -183,7 +182,7 @@ int main(int argc, const char** argv){
     Edge* r2r4 = new Edge(*h, *l);
     Edge* r3r4 = new Edge(*k, *l);
     Edge* r4s = new Edge(*l , *a);
-
+*/
     Edge* line1 = new Edge(*h,*k);
     Edge* line2 = new Edge(*f,*i);
     Edge* line3 = new Edge(*j,*k);
@@ -479,22 +478,46 @@ int main(int argc, const char** argv){
        cout << "\n\n\n\n" << node_to_deep[cc].second << node_to_deep[cc].first << endl;
        cc = cc + 1;
      }
+
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      { 
+       vector<Node*> temp_n;
        if (count_edges((*it)) > 1)
        {
-       /*for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
-       {
-        cout << (*t)->getDstNode().getID() << endl;
-       }
-       */
-       
-       cout << "Klappt?" << endl;
-       cout << (*(*it)->getOutgoingEdges().begin())->getDstNode().getID() <<endl;
-       cout << (*(*it)->getOutgoingEdges().end())->getDstNode().getID() <<endl;
+         for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
+         {
+          cout << (*t)->getDstNode().getID() << endl;
+          temp_n.push_back(&(*t)->getDstNode());
+         }
 
-       sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
-       cout << "Klappt!" << endl;
+        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
+        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
+
+        //sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
+        sum_p(*it, temp_n[0], temp_n[1], &g);
+        cout << "Klappt!" << endl;
+        cout << g.toString() << endl;
+      }
+     }
+     // Now there should be no parallel elements be left
+     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     { 
+       vector<Node*> temp_n;
+       if (count_edges((*it)) > 1)
+       {
+         for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
+         {
+          cout << (*t)->getDstNode().getID() << endl;
+          temp_n.push_back(&(*t)->getDstNode());
+         }
+
+        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
+        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
+
+        //sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
+        sum_p(*it, temp_n[0], temp_n[1], &g);
+        cout << "Klappt!" << endl;
+        cout << g.toString() << endl;
       }
      }
     }
