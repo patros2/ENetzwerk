@@ -20,6 +20,9 @@
 
 
 
+
+
+
 void sum_p(Node* src, Node* a, Node* b, Graph* g)
 {
 
@@ -43,13 +46,10 @@ void sum_p(Node* src, Node* a, Node* b, Graph* g)
 }
 
 
-void sum_r(Node* a, Node* b, Graph* g)
+void sum_r(Node* src,Node* a, Node* b, Graph* g)
 {
-  
-  Node* src = &(*a->getOutgoingEdges().begin())->getSrcNode();
-  std::string name = (*a->getOutgoingEdges().begin())->getDstNode().getID() + (*b->getOutgoingEdges().begin())->getDstNode().getID() ;
-  int type = (*a->getOutgoingEdges().begin())->getDstNode().getType();
-
+  std::string name = (*b).getID() + (*a).getID() ;
+  int type = (*a).getType();
   double value = pot((*b->getOutgoingEdges().begin()),1);
   
   Node* z = new Node(name, value, type);
@@ -102,6 +102,37 @@ Graph* to_tree(Graph* g)
   return depth;                                                                                                 
   }                                                                                                             
 
+void sum_all_r(Graph* g)
+{
+     std::list<Node*> nodes_in_g = (*g).getnodes();
+     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     { 
+       if (count_edges((*it)) == 0 && it != nodes_in_g.begin())
+       {
+       Node *o = (*it);
+       Node *p = (*--it);
+       it++;
+       std::cout << p->getID() << std::endl;
+       std::cout << o->getID() << std::endl;
+       sum_r(*it,o,p, g);
+
+        /*
+         for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
+         {
+          cout << (*t)->getDstNode().getID() << endl;
+          temp_n.push_back(&(*t)->getDstNode());
+         }
+
+        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
+        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
+
+
+        cout << "Klappt!" << endl;
+        */
+
+      }
+     }
+}
 
 
 
@@ -490,36 +521,24 @@ int main(int argc, const char** argv){
           temp_n.push_back(&(*t)->getDstNode());
          }
 
-        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
-        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
+        //cout <<temp_n[0]->getOutgoingEdges().size() << endl;
+        //cout <<temp_n[1]->getOutgoingEdges().size() << endl;
 
         //sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
         sum_p(*it, temp_n[0], temp_n[1], &g);
-        cout << "Klappt!" << endl;
+
         cout << g.toString() << endl;
       }
      }
+
      // Now there should be no parallel elements be left
-     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
-     { 
-       vector<Node*> temp_n;
-       if (count_edges((*it)) > 1)
-       {
-         for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
-         {
-          cout << (*t)->getDstNode().getID() << endl;
-          temp_n.push_back(&(*t)->getDstNode());
-         }
-
-        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
-        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
-
-        //sum_p( &(*(*it)->getOutgoingEdges().begin())->getDstNode(), &(*(*it)->getOutgoingEdges().end())->getDstNode(), &g);
-        sum_p(*it, temp_n[0], temp_n[1], &g);
+     // ToDo we need some way to ensure that all only have a single connetion
+     // need to reload the nodes of graph
+     nodes_in_g = g.getnodes();
         cout << "Klappt!" << endl;
-        cout << g.toString() << endl;
-      }
-     }
+     sum_all_r(&g);
+     cout << g.toString() << endl;
     }
+
 }
 
