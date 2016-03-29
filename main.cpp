@@ -118,24 +118,28 @@ void sum_all_r(Graph* g)
        std::cout << o->getID() << std::endl;
        std::cout << src->getID() << std::endl;
        sum_r(src,o,p, g);
-
-        /*
-         for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
-         {
-          cout << (*t)->getDstNode().getID() << endl;
-          temp_n.push_back(&(*t)->getDstNode());
-         }
-
-        cout <<temp_n[0]->getOutgoingEdges().size() << endl;
-        cout <<temp_n[1]->getOutgoingEdges().size() << endl;
-
-
-        cout << "Klappt!" << endl;
-        */
       i++;
       }
 
      }
+}
+
+int build_depth(Graph* g)
+{
+     std::list<Node*> nodes_in_g = (*g).getnodes();
+     std::vector<std::pair<Node*, int>> node_to_deep;
+     int count = 0; 
+     int cc=0;
+     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
+     {
+       int d = get_depth((*it), count);
+       std::cout <<"depth ist: "<< d << " for node: " <<  (*it)->getID() << std::endl;
+       d = get_depth((*it), count) ;
+       node_to_deep.push_back(std::pair<Node*, int>(*it, d));
+       //std::cout << "\n\n\n\n" << node_to_deep[cc].second << node_to_deep[cc].first << std::endl;
+       cc = cc + 1;
+     }
+ return node_to_deep[cc].second;
 }
 
 
@@ -496,23 +500,15 @@ int main(int argc, const char** argv){
      list<Edge*> t = g.getedges();
      list<Edge*> to_count;
      
-     int count = 0; 
-     std::vector<std::pair<Node*, int>> node_to_deep;
+
+
 
      to_tree(&g);
      cout << g.toString() << endl;
-     int cc=0;
+
 
      // build depth
-     for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
-     {
-       int d = get_depth((*it), count);
-       cout <<"depth ist: "<< d << " for node: " <<  (*it)->getID() << endl;
-       //d = get_depth((*it), count) ;
-       node_to_deep.push_back(pair<Node*, int>(*it, d));
-       cout << "\n\n\n\n" << node_to_deep[cc].second << node_to_deep[cc].first << endl;
-       cc = cc + 1;
-     }
+
 
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
      { 
@@ -538,10 +534,42 @@ int main(int argc, const char** argv){
      // Now there should be no parallel elements be left
      // ToDo we need some way to ensure that all only have a single connetion
      // need to reload the nodes of graph
+     int r = build_depth(&g);
+     cout << r <<" " << endl;
+     cout << r <<" " << endl;
      nodes_in_g = g.getnodes();
      cout << "Klappt!" << endl;
      sum_all_r(&g);
      cout << g.toString() << endl;
+     //r = build_depth(&g);
+
+     // need a way to make this called as much as needed
+     sum_all_r(&g);
+     cout << g.toString() << endl;
+    double u = spannung(g);
+    g.setwert(4,u);
+    double endwert = gesamtwert(g);
+    int endtyp = gesamttyp(g);
+    g.setwert(endtyp,endwert);
+
+    //setzen der stromstaerke
+    double stromstaerke = strom(g);
+    g.setwert(5,stromstaerke);
+    //setzen der Leistung
+    double p = leistung(g);
+    g.setwert(6,p);
+
+//test gesamt netzwerk
+    std::cout << std::endl << "break" << std::endl;
+    std::cout << "Das Netzwerk hat:" << std::endl;
+    std::cout << "Den Widerstand: " << g.getwert("1") << " Ohm"  << std::endl;
+    std::cout << "Den Kondensator: " << g.getwert("2") << " Farad"  << std::endl;
+    std::cout << "Die Spule: " << g.getwert("3") << " Henry"  << std::endl;
+    std::cout << "Die Spannungsquelle: " << g.getwert("4") << " Volt"  << std::endl;
+    std::cout << "Die Stromstaerke: " << g.getwert("5") << " Amper"  << std::endl;
+    std::cout << "Die Leistung: " << g.getwert("6") << " Watt"  << std::endl;
+
+     
     }
 
 }
