@@ -50,6 +50,7 @@ void sum_r(Node* src,Node* a, Node* b, Graph* g)
 {
   std::string name = (*b).getID() + (*a).getID() ;
   int type = (*a).getType();
+  //std::cout << "depth is: " << depth << std::endl;                                                          
   double value = pot((*b->getOutgoingEdges().begin()),1);
   
   Node* z = new Node(name, value, type);
@@ -84,18 +85,11 @@ Graph* to_tree(Graph* g)
     // get a list of edges                                                                                      
     std::list<Edge*>& edges= (*e).getOutgoingEdges();                                                           
     depth = depth +1 ;                                                                                          
-    //std::cout << "depth is: " << depth << std::endl;                                                          
+
     for (std::list<Edge*>::iterator t = edges.begin(); t != edges.end(); t++)                                   
     {                                                                                                           
-      //std::cout << "&(*t)->getDstNode() " <<  &(*t)->getDstNode() << std::endl;                                                          
-      //std::cout << " &(*edges.begin())->getSrcNode() " << &(*edges.begin())->getSrcNode() << std::endl;                                              
-      //std::cout << " &(*t)->getSrcNode() "<< &(*t)->getSrcNode() << std::endl;                                                          
-      //std::cout << " (*e).getID() " << (*e).getID() << std::endl;                                              
-      //std::cout << " &(*t)->getDstNode() "<<(*t)->getDstNode().getID() << std::endl;                                                          
-      //std::cout << " &(*t)->getDstNode() "<<(*t)->getDstNode().getOutgoingEdges().empty() << std::endl;                                                          
      if ( (*t)->getDstNode().getOutgoingEdges().empty() == 0)
      { 
-      //std::cout << "True" << std::endl;
       depth = get_depth(&(*t)->getDstNode(), depth);
       }                                                                                                         
     }                                                                                                           
@@ -104,9 +98,17 @@ Graph* to_tree(Graph* g)
 
 void sum_all_r(Graph* g)
 {
+     Node* src;
      std::list<Node*> nodes_in_g = (*g).getnodes();
      for (std::list<Node*>::iterator it = nodes_in_g.begin(); it != nodes_in_g.end(); it++)
-     { 
+     {
+      unsigned long i =0;
+       if (count_edges((*it)) != 0 && it != nodes_in_g.begin())
+       {
+         src =  (*--it);
+         it++;
+       }
+       
        if (count_edges((*it)) == 0 && it != nodes_in_g.begin())
        {
        Node *o = (*it);
@@ -114,7 +116,8 @@ void sum_all_r(Graph* g)
        it++;
        std::cout << p->getID() << std::endl;
        std::cout << o->getID() << std::endl;
-       sum_r(*it,o,p, g);
+       std::cout << src->getID() << std::endl;
+       sum_r(src,o,p, g);
 
         /*
          for (std::list<Edge*>::iterator t = (*it)->getOutgoingEdges().begin(); t != (*it)->getOutgoingEdges().end(); t++)
@@ -129,8 +132,9 @@ void sum_all_r(Graph* g)
 
         cout << "Klappt!" << endl;
         */
-
+      i++;
       }
+
      }
 }
 
@@ -535,7 +539,7 @@ int main(int argc, const char** argv){
      // ToDo we need some way to ensure that all only have a single connetion
      // need to reload the nodes of graph
      nodes_in_g = g.getnodes();
-        cout << "Klappt!" << endl;
+     cout << "Klappt!" << endl;
      sum_all_r(&g);
      cout << g.toString() << endl;
     }
